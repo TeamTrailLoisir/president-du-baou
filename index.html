@@ -170,16 +170,17 @@ select {
 
 </head>
 
+
 <body>
 
 
 <header class="header">
 
-<div class="crown">👑</div>
+  <div class="crown">👑</div>
 
-<h1>Le Président du Baou</h1>
+  <h1>Le Président du Baou</h1>
 
-<p>Challenge Team Trail Loisir</p>
+  <p>Challenge Team Trail Loisir</p>
 
 </header>
 
@@ -187,87 +188,91 @@ select {
 <main class="container">
 
 
+<!-- PARTICIPANT -->
+
 <section class="card">
 
-<h2>Qui es-tu ?</h2>
-<select id="participant">
-  <option value="">Chargement des participants...</option>
-</select>
+  <h2>Qui es-tu ?</h2>
 
+  <select id="participant">
+    <option value="">Chargement des participants...</option>
+  </select>
 
 </section>
 
 
 
+<!-- COMPTEUR -->
+
 <section class="card">
 
-<h2>Combien de montées aujourd'hui ?</h2>
+  <h2>Combien de montées aujourd'hui ?</h2>
 
-<div class="counter">
+  <div class="counter">
 
-<button onclick="moins()">−</button>
+    <button type="button" onclick="moins()">−</button>
 
-<div id="nombre">1</div>
+    <div id="nombre">1</div>
 
-<button onclick="plus()">+</button>
+    <button type="button" onclick="plus()">+</button>
 
-</div>
+  </div>
 
 
-<button
-class="validate"
-id="boutonValider"
-onclick="valider()">
+  <button
+    class="validate"
+    id="boutonValider"
+    onclick="valider()">
 
-VALIDER MES MONTÉES
+    VALIDER MES MONTÉES
 
-</button>
+  </button>
 
 </section>
 
 
 
+<!-- CLASSEMENT -->
+
 <section class="card">
 
-<h2>🏆 Classement</h2>
+  <h2>🏆 Classement</h2>
 
-<ul
-class="ranking"
-id="classement">
+  <ul
+    class="ranking"
+    id="classement">
 
-<li>Chargement du classement...</li>
+    <li>Chargement du classement...</li>
 
-</ul>
+  </ul>
 
 </section>
 
 
+
+<!-- TOTAL CLUB -->
 
 <section class="card total">
 
-<div>
-Total des montées du club
-</div>
+  <div>
+    Total des montées du club
+  </div>
 
-<div
-class="total-number"
-id="totalClub">
+  <div
+    class="total-number"
+    id="totalClub">
+    0
+  </div>
 
-0
-
-</div>
-
-<div>
-🔥 Ça commence à chauffer dans le Baou !
-</div>
+  <div>
+    🔥 Ça commence à chauffer dans le Baou !
+  </div>
 
 </section>
 
 
 <div class="small">
-
-Président du Baou • Team Trail Loisir
-
+  Président du Baou • Team Trail Loisir
 </div>
 
 
@@ -275,64 +280,129 @@ Président du Baou • Team Trail Loisir
 
 
 
+<!-- SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <script>
 
 
-/* ===========================
+/* ==================================================
    CONNEXION SUPABASE
-=========================== */
+================================================== */
 
 const SUPABASE_URL =
-"https://fcizyahrzowsrorxuapv.supabase.co";
+  "https://fcizyahrzowsrorxuapv.supabase.co";
 
 
 const SUPABASE_KEY =
-"sb_publishable_2K01tIDQQiEgBJR3b3c1nw_NJEtXJ8r";
+  "sb_publishable_2K01tIDQQiEgBJR3b3c1nw_NJEtXJ8r";
 
 
 const db =
-supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
 
-/* ===========================
-   COMPTEUR
-=========================== */
+/* ==================================================
+   CHARGEMENT AUTOMATIQUE DES PARTICIPANTS
+================================================== */
+
 async function chargerParticipants() {
 
-  const select = document.getElementById("participant");
+  const select =
+    document.getElementById("participant");
 
-  const { data: participants, error } = await db
-    .from("participants")
-    .select("id, prenom")
-    .order("prenom", { ascending: true });
+
+  select.innerHTML =
+    '<option value="">Chargement des participants...</option>';
+
+
+  const {
+    data: participants,
+    error
+  } =
+    await db
+      .from("participants")
+      .select("id, prenom");
+
 
   if (error) {
-    console.error("Erreur chargement participants :", error);
+
+    console.error(
+      "Erreur chargement participants :",
+      error
+    );
+
+
     select.innerHTML =
       '<option value="">Erreur de chargement</option>';
+
+
     return;
+
   }
+
+
+  if (!participants || participants.length === 0) {
+
+    select.innerHTML =
+      '<option value="">Aucun participant</option>';
+
+    return;
+
+  }
+
+
+  /* TRI ALPHABETIQUE COTE NAVIGATEUR */
+
+  participants.sort(
+    (a, b) =>
+      (a.prenom || "").localeCompare(
+        b.prenom || "",
+        "fr",
+        {
+          sensitivity: "base"
+        }
+      )
+  );
+
 
   select.innerHTML = "";
 
-  participants.forEach(participant => {
 
-    const option = document.createElement("option");
+  participants.forEach(
+    participant => {
 
-    option.value = participant.id;
-    option.textContent = participant.prenom;
+      const option =
+        document.createElement("option");
 
-    select.appendChild(option);
 
-  });
+      option.value =
+        participant.id;
+
+
+      option.textContent =
+        participant.prenom;
+
+
+      select.appendChild(option);
+
+    }
+  );
+
 }
+
+
+
+/* ==================================================
+   COMPTEUR DE MONTEES
+================================================== */
+
 let nombre = 1;
 
 
@@ -340,7 +410,8 @@ function afficher() {
 
   document
     .getElementById("nombre")
-    .textContent = nombre;
+    .textContent =
+      nombre;
 
 }
 
@@ -368,9 +439,9 @@ function moins() {
 
 
 
-/* ===========================
+/* ==================================================
    CHARGEMENT DU CLASSEMENT
-=========================== */
+================================================== */
 
 async function chargerClassement() {
 
@@ -384,7 +455,7 @@ async function chargerClassement() {
 
 
 
-  /* ---- PARTICIPANTS ---- */
+  /* PARTICIPANTS */
 
   const {
     data: participants,
@@ -393,7 +464,6 @@ async function chargerClassement() {
     await db
       .from("participants")
       .select("id, prenom");
-
 
 
   if (erreurParticipants) {
@@ -409,14 +479,14 @@ async function chargerClassement() {
 
       <li class="erreur">
 
-      Erreur participants :<br>
+        Erreur participants :<br>
 
-      ${erreurParticipants.message}
+        ${erreurParticipants.message}
 
-      <br>
+        <br>
 
-      Code :
-      ${erreurParticipants.code || "aucun"}
+        Code :
+        ${erreurParticipants.code || "aucun"}
 
       </li>
 
@@ -429,7 +499,7 @@ async function chargerClassement() {
 
 
 
-  /* ---- MONTEES ---- */
+  /* MONTEES */
 
   const {
     data: montees,
@@ -438,7 +508,6 @@ async function chargerClassement() {
     await db
       .from("montees")
       .select("participant_id, nombre");
-
 
 
   if (erreurMontees) {
@@ -454,14 +523,14 @@ async function chargerClassement() {
 
       <li class="erreur">
 
-      Erreur montées :<br>
+        Erreur montées :<br>
 
-      ${erreurMontees.message}
+        ${erreurMontees.message}
 
-      <br>
+        <br>
 
-      Code :
-      ${erreurMontees.code || "aucun"}
+        Code :
+        ${erreurMontees.code || "aucun"}
 
       </li>
 
@@ -474,9 +543,9 @@ async function chargerClassement() {
 
 
 
-  /* ===========================
+  /* ==================================================
      CALCUL DES SCORES
-  =========================== */
+  ================================================== */
 
 
   const scores =
@@ -519,7 +588,7 @@ async function chargerClassement() {
 
 
 
-  /* Classement décroissant */
+  /* CLASSEMENT DECROISSANT */
 
   scores.sort(
     (a, b) =>
@@ -528,13 +597,12 @@ async function chargerClassement() {
 
 
 
-  /* ===========================
-     AFFICHAGE CLASSEMENT
-  =========================== */
+  /* ==================================================
+     AFFICHAGE DU CLASSEMENT
+  ================================================== */
 
 
   classement.innerHTML = "";
-
 
 
   scores.forEach(
@@ -563,14 +631,12 @@ async function chargerClassement() {
       }
 
 
-
       classement.innerHTML += `
 
         <li>
 
           <span>
-            ${medaille}
-            ${participant.prenom}
+            ${medaille}${participant.prenom}
           </span>
 
           <span class="score">
@@ -587,9 +653,9 @@ async function chargerClassement() {
 
 
 
-  /* ===========================
+  /* ==================================================
      TOTAL CLUB
-  =========================== */
+  ================================================== */
 
 
   const totalClub =
@@ -606,33 +672,49 @@ async function chargerClassement() {
     .textContent =
       totalClub;
 
-
 }
 
 
 
-/* ===========================
-   ENREGISTRER DES MONTEES
-=========================== */
+/* ==================================================
+   ENREGISTREMENT DES MONTEES
+================================================== */
 
 async function valider() {
 
 
+  const selectParticipant =
+    document.getElementById("participant");
+
+
   const participantId =
     Number(
-      document
-        .getElementById("participant")
-        .value
+      selectParticipant.value
     );
 
 
-  const bouton =
-    document
-      .getElementById("boutonValider");
+  /* SECURITE */
 
+  if (!participantId) {
+
+    alert(
+      "Choisis d'abord ton nom."
+    );
+
+    return;
+
+  }
+
+
+
+  const bouton =
+    document.getElementById(
+      "boutonValider"
+    );
 
 
   bouton.disabled = true;
+
 
   bouton.textContent =
     "ENREGISTREMENT...";
@@ -677,6 +759,7 @@ async function valider() {
 
     bouton.disabled = false;
 
+
     bouton.textContent =
       "VALIDER MES MONTÉES";
 
@@ -687,11 +770,26 @@ async function valider() {
 
 
 
-  /* Confirmation */
+  /* NOM DU PARTICIPANT */
+
+  const nomParticipant =
+    selectParticipant
+      .options[
+        selectParticipant.selectedIndex
+      ]
+      .text;
+
+
+
+  /* CONFIRMATION */
 
   alert(
 
     "🔥 " +
+
+    nomParticipant +
+
+    " : " +
 
     nombre +
 
@@ -701,7 +799,7 @@ async function valider() {
 
 
 
-  /* Retour compteur à 1 */
+  /* REMISE DU COMPTEUR A 1 */
 
   nombre = 1;
 
@@ -711,26 +809,34 @@ async function valider() {
 
   bouton.disabled = false;
 
+
   bouton.textContent =
     "VALIDER MES MONTÉES";
 
 
 
-  /* Actualisation immédiate */
+  /* ACTUALISATION DU CLASSEMENT */
 
   await chargerClassement();
-
 
 }
 
 
 
-/* ===========================
-   DEMARRAGE
-=========================== */
+/* ==================================================
+   DEMARRAGE DE L'APPLICATION
+================================================== */
 
-chargerParticipants();
-chargerClassement();;
+async function demarrerApplication() {
+
+  await chargerParticipants();
+
+  await chargerClassement();
+
+}
+
+
+demarrerApplication();
 
 
 </script>
