@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,20 @@
 
 <title>Le Président du Baou</title>
 
+<!-- ICONE APPLICATION -->
+<link rel="icon" type="image/png" href="icone-coq.png">
+<link rel="apple-touch-icon" href="icone-coq.png">
+
+<!-- COMPORTEMENT APPLICATION SUR IPHONE -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Président du Baou">
+
 <style>
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -17,22 +30,36 @@ body {
   color: #171717;
 }
 
+/* ===========================
+   HEADER
+=========================== */
+
 .header {
   position: relative;
   min-height: 280px;
+
   background:
-    linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.60)),
-    url("baou-header.jpg.jpg") center center / cover no-repeat;
+    linear-gradient(
+      rgba(0,0,0,.15),
+      rgba(0,0,0,.60)
+    ),
+    url("baou-header.jpg.jpg")
+    center center / cover no-repeat;
+
   color: white;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   text-align: center;
+
   padding: 30px 20px;
 }
 
 .header-content {
-  text-shadow: 0 3px 10px rgba(0,0,0,.8);
+  text-shadow:
+    0 3px 10px rgba(0,0,0,.8);
 }
 
 .crown {
@@ -50,6 +77,11 @@ body {
   font-size: 17px;
 }
 
+
+/* ===========================
+   STRUCTURE
+=========================== */
+
 .container {
   max-width: 700px;
   margin: auto;
@@ -58,10 +90,15 @@ body {
 
 .card {
   background: white;
+
   border-radius: 18px;
+
   padding: 22px;
+
   margin-bottom: 18px;
-  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+
+  box-shadow:
+    0 4px 18px rgba(0,0,0,.08);
 }
 
 h2 {
@@ -69,276 +106,463 @@ h2 {
   font-size: 20px;
 }
 
+
+/* ===========================
+   PARTICIPANT
+=========================== */
+
 select {
   width: 100%;
+
   padding: 15px;
+
   border-radius: 11px;
+
   border: 1px solid #ccc;
+
   font-size: 17px;
+
   background: white;
 }
 
+
+/* ===========================
+   STATS PERSONNELLES
+=========================== */
+
 .stats {
+
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap: 10px;
 }
 
 .stat {
+
   background: #f5f5f5;
+
   border-radius: 12px;
+
   padding: 18px 5px;
+
   text-align: center;
 }
 
 .stat-number {
+
   font-size: 31px;
+
   font-weight: 800;
+
   color: #df171d;
 }
 
 .stat-label {
+
   font-size: 11px;
+
   font-weight: bold;
+
   margin-top: 6px;
+
   text-transform: uppercase;
 }
 
-.week-number {
-  color: #df171d;
-  font-size: 46px;
-  font-weight: 800;
-  text-align: center;
-}
 
-.week-label {
-  text-align: center;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-/* PROCHAINE CIBLE */
+/* ===========================
+   PROCHAINE CIBLE
+=========================== */
 
 .target {
+
   background: #111;
+
   color: white;
+
   text-align: center;
 }
 
 .target-title {
+
   opacity: .7;
+
   font-size: 13px;
+
   font-weight: bold;
+
   letter-spacing: 1px;
 }
 
 .target-name {
+
   color: #ed171d;
+
   font-size: 27px;
+
   font-weight: 800;
+
   margin: 12px 0 5px;
 }
 
 .target-score {
+
   opacity: .8;
+
   font-size: 14px;
 }
 
 .target-gap {
+
   font-size: 18px;
+
   font-weight: bold;
+
   margin-top: 14px;
 }
 
-/* ROI SEMAINE */
+
+/* ===========================
+   ROI DE LA SEMAINE
+=========================== */
 
 .king-week {
   text-align: center;
 }
 
 .king-week-name {
+
   font-size: 27px;
+
   font-weight: 800;
+
   margin-top: 10px;
 }
 
 .king-week-score {
+
   color: #df171d;
+
   font-size: 38px;
+
   font-weight: 800;
+
   margin: 5px 0;
 }
 
 .king-week-label {
+
   color: #777;
+
   font-size: 12px;
+
   font-weight: bold;
 }
 
-/* COMPTEUR */
+
+/* ===========================
+   CETTE SEMAINE
+=========================== */
+
+.week-number {
+
+  color: #df171d;
+
+  font-size: 46px;
+
+  font-weight: 800;
+
+  text-align: center;
+}
+
+.week-label {
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: bold;
+}
+
+
+/* ===========================
+   COMPTEUR
+=========================== */
 
 .counter {
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 28px;
+
   margin: 24px 0;
 }
 
 .counter button {
+
   width: 58px;
+
   height: 58px;
+
   border-radius: 50%;
+
   border: none;
+
   background: #202020;
+
   color: white;
+
   font-size: 31px;
+
   cursor: pointer;
 }
 
 #nombre {
+
   font-size: 43px;
+
   font-weight: bold;
+
   min-width: 50px;
+
   text-align: center;
 }
 
+
+/* ===========================
+   BOUTON VALIDATION
+=========================== */
+
 .validate {
+
   width: 100%;
+
   padding: 17px;
+
   border: none;
+
   border-radius: 11px;
+
   background: #e1171e;
+
   color: white;
+
   font-size: 17px;
+
   font-weight: bold;
+
   cursor: pointer;
 }
 
 .validate:disabled {
+
   opacity: .5;
 }
 
+
+/* ===========================
+   CORRECTION
+=========================== */
+
 .correction {
+
   margin-top: 15px;
+
   text-align: center;
 }
 
 .correction button {
+
   border: 0;
+
   background: none;
+
   color: #d71920;
+
   text-decoration: underline;
+
   cursor: pointer;
+
   font-size: 14px;
 }
 
-/* CLASSEMENT */
+
+/* ===========================
+   CLASSEMENT
+=========================== */
 
 .ranking {
+
   list-style: none;
+
   margin: 0;
+
   padding: 0;
 }
 
 .ranking li {
+
   display: flex;
+
   justify-content: space-between;
+
   padding: 13px 5px;
+
   border-bottom: 1px solid #eee;
 }
 
 .ranking li:last-child {
+
   border-bottom: none;
 }
 
 .score {
+
   font-weight: bold;
+
   font-size: 19px;
 }
 
-/* ACTIVITE */
+
+/* ===========================
+   ACTIVITE
+=========================== */
 
 .activity {
+
   list-style: none;
+
   margin: 0;
+
   padding: 0;
 }
 
 .activity li {
+
   padding: 14px 3px;
+
   border-bottom: 1px solid #eee;
 }
 
 .activity li:last-child {
+
   border-bottom: none;
 }
 
 .activity-name {
+
   font-weight: bold;
 }
 
 .activity-number {
+
   color: #df171d;
+
   font-weight: bold;
 }
 
 .activity-date {
+
   color: #888;
+
   font-size: 12px;
+
   margin-top: 4px;
 }
 
-/* TOTAL */
+
+/* ===========================
+   TOTAL CLUB
+=========================== */
 
 .total {
+
   background: #111;
+
   color: white;
+
   text-align: center;
 }
 
 .total-number {
+
   color: #ed171d;
+
   font-size: 54px;
+
   font-weight: 800;
+
   margin: 8px 0;
 }
 
-/* COUNTDOWN */
+
+/* ===========================
+   COMPTE A REBOURS
+=========================== */
 
 .countdown {
+
   background: #e1171e;
+
   color: white;
+
   text-align: center;
+
   border-radius: 18px;
+
   padding: 22px 15px;
+
   margin-bottom: 18px;
-  box-shadow: 0 4px 18px rgba(0,0,0,.12);
+
+  box-shadow:
+    0 4px 18px rgba(0,0,0,.12);
 }
 
 .countdown-title {
+
   font-size: 14px;
+
   font-weight: bold;
 }
 
 .countdown-number {
+
   font-size: 31px;
+
   font-weight: 800;
+
   margin: 7px 0;
 }
 
 .countdown-date {
+
   font-size: 13px;
 }
 
 .small {
+
   text-align: center;
+
   color: #777;
+
   font-size: 12px;
+
   padding-bottom: 25px;
 }
 
+
+/* ===========================
+   MOBILE
+=========================== */
+
 @media(max-width:500px) {
+
   .header {
     min-height: 220px;
   }
@@ -354,59 +578,119 @@ select {
   .container {
     padding: 15px;
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header class="header">
+
 <div class="header-content">
-<div class="crown">👑</div>
-<h1>Le Président du Baou</h1>
-<p>Challenge Team Trail Loisir</p>
+
+<div class="crown">
+👑
 </div>
+
+<h1>
+Le Président du Baou
+</h1>
+
+<p>
+Challenge Team Trail Loisir
+</p>
+
+</div>
+
 </header>
+
 
 <main class="container">
 
-<!-- IDENTIFICATION -->
+
+<!-- PARTICIPANT -->
 
 <section class="card">
-<h2>👋 Qui es-tu ?</h2>
+
+<h2>
+👋 Qui es-tu ?
+</h2>
 
 <select id="participant">
-<option value="">Chargement des participants...</option>
+
+<option value="">
+Chargement des participants...
+</option>
+
 </select>
+
 </section>
+
 
 
 <!-- MON CHALLENGE -->
 
 <section class="card">
 
-<h2>MON CHALLENGE 👑</h2>
+<h2>
+MON CHALLENGE 👑
+</h2>
 
 <div class="stats">
 
 <div class="stat">
-<div class="stat-number" id="mesMontees">0</div>
-<div class="stat-label">Mes montées</div>
+
+<div
+class="stat-number"
+id="mesMontees">
+0
 </div>
 
-<div class="stat">
-<div class="stat-number" id="monClassement">-</div>
-<div class="stat-label">Classement</div>
+<div class="stat-label">
+Mes montées
 </div>
 
+</div>
+
+
 <div class="stat">
-<div class="stat-number" id="maSemaine">0</div>
-<div class="stat-label">Cette semaine</div>
+
+<div
+class="stat-number"
+id="monClassement">
+-
+</div>
+
+<div class="stat-label">
+Classement
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="maSemaine">
+0
+</div>
+
+<div class="stat-label">
+Cette semaine
+</div>
+
 </div>
 
 </div>
 
 </section>
+
 
 
 <!-- PROCHAINE CIBLE -->
@@ -414,75 +698,117 @@ select {
 <section class="card target">
 
 <div class="target-title">
+
 ⚔️ PROCHAINE CIBLE
+
 </div>
 
-<div class="target-name" id="targetName">
+<div
+class="target-name"
+id="targetName">
+
 Calcul...
+
 </div>
 
-<div class="target-score" id="targetScore">
+<div
+class="target-score"
+id="targetScore">
 </div>
 
-<div class="target-gap" id="targetGap">
+<div
+class="target-gap"
+id="targetGap">
 </div>
 
 </section>
+
 
 
 <!-- ROI SEMAINE -->
 
 <section class="card king-week">
 
-<h2>👑 ROI DU BAOU CETTE SEMAINE</h2>
+<h2>
+👑 ROI DU BAOU CETTE SEMAINE
+</h2>
 
-<div class="king-week-name" id="roiSemaine">
+<div
+class="king-week-name"
+id="roiSemaine">
+
 Calcul...
+
 </div>
 
-<div class="king-week-score" id="roiSemaineScore">
+<div
+class="king-week-score"
+id="roiSemaineScore">
+
 0
+
 </div>
 
 <div class="king-week-label">
+
 MONTÉES DEPUIS LUNDI
+
 </div>
 
 </section>
+
 
 
 <!-- MA SEMAINE -->
 
 <section class="card">
 
-<h2>🔥 CETTE SEMAINE</h2>
+<h2>
+🔥 CETTE SEMAINE
+</h2>
 
-<div class="week-number" id="semaine">
+<div
+class="week-number"
+id="semaine">
+
 0
+
 </div>
 
 <div class="week-label">
+
 MES MONTÉES DEPUIS LUNDI
+
 </div>
 
 </section>
+
 
 
 <!-- SAISIE -->
 
 <section class="card">
 
-<h2>Combien de montées aujourd'hui ?</h2>
+<h2>
+Combien de montées aujourd'hui ?
+</h2>
 
 <div class="counter">
 
-<button onclick="moins()">−</button>
+<button onclick="moins()">
+−
+</button>
 
-<div id="nombre">1</div>
+<div id="nombre">
+1
+</div>
 
-<button onclick="plus()">+</button>
+<button onclick="plus()">
++
+</button>
 
 </div>
+
 
 <button
 class="validate"
@@ -493,10 +819,13 @@ VALIDER MES MONTÉES
 
 </button>
 
+
 <div class="correction">
 
 <button onclick="corriger()">
+
 J'ai fait une erreur de saisie
+
 </button>
 
 </div>
@@ -504,49 +833,77 @@ J'ai fait une erreur de saisie
 </section>
 
 
+
 <!-- CLASSEMENT -->
 
 <section class="card">
 
-<h2>🏆 CLASSEMENT GÉNÉRAL</h2>
+<h2>
+🏆 CLASSEMENT GÉNÉRAL
+</h2>
 
-<ul class="ranking" id="classement">
-<li>Chargement...</li>
+<ul
+class="ranking"
+id="classement">
+
+<li>
+Chargement...
+</li>
+
 </ul>
 
 </section>
+
 
 
 <!-- ACTIVITE -->
 
 <section class="card">
 
-<h2>⚡ ACTIVITÉ RÉCENTE</h2>
+<h2>
+⚡ ACTIVITÉ RÉCENTE
+</h2>
 
-<ul class="activity" id="activite">
-<li>Chargement...</li>
+<ul
+class="activity"
+id="activite">
+
+<li>
+Chargement...
+</li>
+
 </ul>
 
 </section>
 
 
-<!-- TOTAL CLUB -->
+
+<!-- TOTAL -->
 
 <section class="card total">
 
 <div>
+
 TOTAL DES MONTÉES DU CLUB
+
 </div>
 
-<div class="total-number" id="totalClub">
+<div
+class="total-number"
+id="totalClub">
+
 0
+
 </div>
 
 <div>
+
 🔥 Ça commence à chauffer dans le Baou !
+
 </div>
 
 </section>
+
 
 
 <!-- COUNTDOWN -->
@@ -554,34 +911,47 @@ TOTAL DES MONTÉES DU CLUB
 <section class="countdown">
 
 <div class="countdown-title">
+
 ⏱ FIN DU CHALLENGE DANS
+
 </div>
 
-<div class="countdown-number" id="countdown">
+<div
+class="countdown-number"
+id="countdown">
+
 Calcul...
+
 </div>
 
 <div class="countdown-date">
+
 Fin le dimanche 2 mai 2027 à 20h00
+
 </div>
 
 </section>
 
 
 <div class="small">
+
 Président du Baou • Team Trail Loisir
+
 </div>
+
 
 </main>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
-/* =============================================
+/* ===========================
    SUPABASE
-============================================= */
+=========================== */
 
 const SUPABASE_URL =
 "https://fcizyahrzowsrorxuapv.supabase.co";
@@ -591,9 +961,10 @@ const SUPABASE_KEY =
 
 const db =
 supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
+
 
 let nombre = 1;
 
@@ -604,1070 +975,1304 @@ let monteesGlobal = [];
 let scoresGlobal = [];
 
 
-/* =============================================
+
+/* ===========================
    PARTICIPANTS
-============================================= */
+=========================== */
 
 async function chargerParticipants() {
 
-const select =
-document.getElementById("participant");
+  const select =
+    document.getElementById(
+      "participant"
+    );
 
-const {data,error} =
-await db
-.from("participants")
-.select("id, prenom, nom")
-.order("prenom");
 
-if(error) {
+  const {
+    data,
+    error
+  } =
+    await db
+      .from("participants")
+      .select("id, prenom, nom")
+      .order("prenom");
 
-console.error(error);
 
-select.innerHTML =
-"<option>Erreur de chargement</option>";
+  if (error) {
 
-return;
+    console.error(error);
+
+    select.innerHTML =
+      "<option>Erreur de chargement</option>";
+
+    return;
+
+  }
+
+
+  participantsGlobal =
+    data || [];
+
+
+  select.innerHTML =
+    "";
+
+
+  participantsGlobal.forEach(
+    p => {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        p.id;
+
+
+      option.textContent =
+        p.prenom +
+        (
+          p.nom
+          ?
+          " " + p.nom
+          :
+          ""
+        );
+
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  const memorise =
+    localStorage.getItem(
+      "participantBaou"
+    );
+
+
+  if (
+    memorise &&
+    participantsGlobal.some(
+      p =>
+        String(p.id) ===
+        String(memorise)
+    )
+  ) {
+
+    select.value =
+      memorise;
+
+  }
+
+
+  select.addEventListener(
+    "change",
+    () => {
+
+      localStorage.setItem(
+        "participantBaou",
+        select.value
+      );
+
+      actualiser();
+
+    }
+  );
+
 }
 
-participantsGlobal =
-data || [];
-
-select.innerHTML = "";
-
-participantsGlobal.forEach(p => {
-
-const option =
-document.createElement("option");
-
-option.value =
-p.id;
-
-option.textContent =
-p.prenom +
-(p.nom ? " "+p.nom : "");
-
-select.appendChild(option);
-
-});
 
 
-const memorise =
-localStorage.getItem(
-"participantBaou"
-);
-
-if(
-memorise &&
-participantsGlobal.some(
-p =>
-String(p.id) ===
-String(memorise)
-)
-) {
-
-select.value =
-memorise;
-
-}
-
-
-select.addEventListener(
-"change",
-() => {
-
-localStorage.setItem(
-"participantBaou",
-select.value
-);
-
-actualiser();
-
-});
-
-}
-
-
-/* =============================================
+/* ===========================
    COMPTEUR
-============================================= */
+=========================== */
 
 function afficher() {
 
-document
-.getElementById("nombre")
-.textContent =
-nombre;
+  document
+    .getElementById(
+      "nombre"
+    )
+    .textContent =
+      nombre;
 
 }
 
 
 function plus() {
 
-nombre++;
+  nombre++;
 
-afficher();
+  afficher();
 
 }
 
 
 function moins() {
 
-if(nombre > 1) {
+  if (nombre > 1) {
 
-nombre--;
+    nombre--;
 
-afficher();
+    afficher();
+
+  }
 
 }
 
-}
 
 
-/* =============================================
+/* ===========================
    DONNEES
-============================================= */
+=========================== */
 
 async function chargerDonnees() {
 
-const {data,error} =
-await db
-.from("montees")
-.select(
-"id, participant_id, nombre, created_at"
-)
-.order(
-"created_at",
-{ascending:false}
-);
+  const {
+    data,
+    error
+  } =
+    await db
+      .from("montees")
+      .select(
+        "id, participant_id, nombre, created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
 
-if(error) {
 
-console.error(error);
+  if (error) {
 
-return;
+    console.error(error);
+
+    return;
+
+  }
+
+
+  monteesGlobal =
+    data || [];
+
+
+  actualiser();
 
 }
 
-monteesGlobal =
-data || [];
-
-actualiser();
-
-}
 
 
-/* =============================================
-   DEBUT DE SEMAINE
-============================================= */
+/* ===========================
+   LUNDI
+=========================== */
 
 function obtenirLundi() {
 
-const maintenant =
-new Date();
+  const maintenant =
+    new Date();
 
-const lundi =
-new Date(maintenant);
 
-const jour =
-maintenant.getDay();
+  const lundi =
+    new Date(
+      maintenant
+    );
 
-const difference =
-jour === 0
-? -6
-: 1-jour;
 
-lundi.setDate(
-maintenant.getDate()
-+
-difference
-);
+  const jour =
+    maintenant.getDay();
 
-lundi.setHours(
-0,0,0,0
-);
 
-return lundi;
+  const difference =
+    jour === 0
+    ?
+    -6
+    :
+    1 - jour;
+
+
+  lundi.setDate(
+    maintenant.getDate()
+    +
+    difference
+  );
+
+
+  lundi.setHours(
+    0,
+    0,
+    0,
+    0
+  );
+
+
+  return lundi;
 
 }
 
 
-/* =============================================
-   ACTUALISATION GENERALE
-============================================= */
+
+/* ===========================
+   ACTUALISATION
+=========================== */
 
 function actualiser() {
 
-if(
-!participantsGlobal.length
-) return;
+  if (
+    !participantsGlobal.length
+  ) {
+
+    return;
+
+  }
 
 
-const participantId =
-Number(
-document
-.getElementById("participant")
-.value
-);
+  const participantId =
+    Number(
+      document
+        .getElementById(
+          "participant"
+        )
+        .value
+    );
 
 
-/* =============================================
-   SCORES GENERAUX
-============================================= */
 
-const scores =
-participantsGlobal.map(
-p => {
+  /* SCORES GENERAUX */
 
-const total =
-monteesGlobal
-
-.filter(
-m =>
-Number(m.participant_id)
-===
-Number(p.id)
-)
-
-.reduce(
-(s,m) =>
-s +
-Number(m.nombre || 0),
-0
-);
+  const scores =
+    participantsGlobal.map(
+      p => {
 
 
-return {
+        const total =
+          monteesGlobal
 
-id:p.id,
+            .filter(
+              m =>
+                Number(
+                  m.participant_id
+                )
+                ===
+                Number(
+                  p.id
+                )
+            )
 
-prenom:p.prenom,
-
-nom:p.nom,
-
-total:
-Math.max(0,total)
-
-};
-
-});
-
-
-scores.sort(
-(a,b) =>
-b.total -
-a.total
-);
-
-
-scoresGlobal =
-scores;
+            .reduce(
+              (s,m) =>
+                s +
+                Number(
+                  m.nombre || 0
+                ),
+              0
+            );
 
 
-/* =============================================
-   CLASSEMENT GENERAL
-============================================= */
+        return {
 
-const classement =
-document.getElementById(
-"classement"
-);
+          id:
+            p.id,
 
-classement.innerHTML =
-"";
+          prenom:
+            p.prenom,
 
+          nom:
+            p.nom,
 
-scores.forEach(
-(p,index) => {
+          total:
+            Math.max(
+              0,
+              total
+            )
 
-let medaille =
-"";
+        };
 
-if(index===0)
-medaille="🥇 ";
-
-else if(index===1)
-medaille="🥈 ";
-
-else if(index===2)
-medaille="🥉 ";
+      }
+    );
 
 
-const estMoi =
-Number(p.id)
-===
-participantId;
+  scores.sort(
+    (a,b) =>
+      b.total -
+      a.total
+  );
 
 
-classement.innerHTML += `
-
-<li
-style="${
-estMoi
-?
-'font-weight:bold;background:#fff4f4;'
-:
-''
-}">
-
-<span>
-
-${medaille}
-
-${p.prenom}
-
-${p.nom
-?
-" "+p.nom.charAt(0)+"."
-:
-""}
-
-${estMoi
-?
-" • Moi"
-:
-""}
-
-</span>
-
-<span class="score">
-
-${p.total}
-
-</span>
-
-</li>
-
-`;
-
-});
+  scoresGlobal =
+    scores;
 
 
-/* =============================================
-   TOTAL CLUB
-============================================= */
 
-const totalClub =
-scores.reduce(
-(s,p) =>
-s+p.total,
-0
-);
+  /* ===========================
+     CLASSEMENT
+  =========================== */
 
-
-document
-.getElementById(
-"totalClub"
-)
-.textContent =
-totalClub;
+  const classement =
+    document.getElementById(
+      "classement"
+    );
 
 
-/* =============================================
-   MOI
-============================================= */
-
-const position =
-scores.findIndex(
-p =>
-Number(p.id)
-===
-participantId
-);
+  classement.innerHTML =
+    "";
 
 
-const moi =
-scores[position];
+  scores.forEach(
+    (p,index) => {
 
 
-if(moi) {
-
-document
-.getElementById(
-"mesMontees"
-)
-.textContent =
-moi.total;
+      let medaille =
+        "";
 
 
-document
-.getElementById(
-"monClassement"
-)
-.textContent =
-(position+1)+"e";
+      if (index === 0) {
+
+        medaille =
+          "🥇 ";
+
+      }
+
+      else if (index === 1) {
+
+        medaille =
+          "🥈 ";
+
+      }
+
+      else if (index === 2) {
+
+        medaille =
+          "🥉 ";
+
+      }
+
+
+      const estMoi =
+        Number(p.id)
+        ===
+        participantId;
+
+
+      classement.innerHTML += `
+
+      <li
+      style="${
+        estMoi
+        ?
+        'font-weight:bold;background:#fff4f4;'
+        :
+        ''
+      }">
+
+      <span>
+
+      ${medaille}
+
+      ${p.prenom}
+
+      ${
+        p.nom
+        ?
+        " " +
+        p.nom.charAt(0) +
+        "."
+        :
+        ""
+      }
+
+      ${
+        estMoi
+        ?
+        " • Moi"
+        :
+        ""
+      }
+
+      </span>
+
+      <span class="score">
+
+      ${p.total}
+
+      </span>
+
+      </li>
+
+      `;
+
+    }
+  );
+
+
+
+  /* TOTAL CLUB */
+
+  const totalClub =
+    scores.reduce(
+      (s,p) =>
+        s + p.total,
+      0
+    );
+
+
+  document
+    .getElementById(
+      "totalClub"
+    )
+    .textContent =
+      totalClub;
+
+
+
+  /* ===========================
+     MON CLASSEMENT
+  =========================== */
+
+  const position =
+    scores.findIndex(
+      p =>
+        Number(p.id)
+        ===
+        participantId
+    );
+
+
+  const moi =
+    scores[position];
+
+
+  if (moi) {
+
+    document
+      .getElementById(
+        "mesMontees"
+      )
+      .textContent =
+        moi.total;
+
+
+    document
+      .getElementById(
+        "monClassement"
+      )
+      .textContent =
+        (position + 1) +
+        "e";
+
+  }
+
+
+
+  /* ===========================
+     SEMAINE
+  =========================== */
+
+  const lundi =
+    obtenirLundi();
+
+
+  const scoresSemaine =
+    participantsGlobal.map(
+      p => {
+
+
+        const total =
+          monteesGlobal
+
+            .filter(
+              m =>
+                Number(
+                  m.participant_id
+                )
+                ===
+                Number(
+                  p.id
+                )
+
+                &&
+
+                new Date(
+                  m.created_at
+                )
+                >=
+                lundi
+            )
+
+            .reduce(
+              (s,m) =>
+                s +
+                Number(
+                  m.nombre || 0
+                ),
+              0
+            );
+
+
+        return {
+
+          id:
+            p.id,
+
+          prenom:
+            p.prenom,
+
+          nom:
+            p.nom,
+
+          total:
+            Math.max(
+              0,
+              total
+            )
+
+        };
+
+      }
+    );
+
+
+  scoresSemaine.sort(
+    (a,b) =>
+      b.total -
+      a.total
+  );
+
+
+
+  /* MA SEMAINE */
+
+  const moiSemaine =
+    scoresSemaine.find(
+      p =>
+        Number(p.id)
+        ===
+        participantId
+    );
+
+
+  const totalSemaine =
+    moiSemaine
+    ?
+    moiSemaine.total
+    :
+    0;
+
+
+  document
+    .getElementById(
+      "maSemaine"
+    )
+    .textContent =
+      totalSemaine;
+
+
+  document
+    .getElementById(
+      "semaine"
+    )
+    .textContent =
+      totalSemaine;
+
+
+
+  /* ===========================
+     ROI SEMAINE
+  =========================== */
+
+  const roi =
+    scoresSemaine[0];
+
+
+  if (
+    roi &&
+    roi.total > 0
+  ) {
+
+
+    document
+      .getElementById(
+        "roiSemaine"
+      )
+      .textContent =
+        roi.prenom +
+        (
+          roi.nom
+          ?
+          " " + roi.nom
+          :
+          ""
+        );
+
+
+    document
+      .getElementById(
+        "roiSemaineScore"
+      )
+      .textContent =
+        roi.total;
+
+  }
+
+  else {
+
+
+    document
+      .getElementById(
+        "roiSemaine"
+      )
+      .textContent =
+        "Le trône est libre 👀";
+
+
+    document
+      .getElementById(
+        "roiSemaineScore"
+      )
+      .textContent =
+        "0";
+
+  }
+
+
+
+  /* ===========================
+     PROCHAINE CIBLE
+  =========================== */
+
+  const targetName =
+    document.getElementById(
+      "targetName"
+    );
+
+
+  const targetScore =
+    document.getElementById(
+      "targetScore"
+    );
+
+
+  const targetGap =
+    document.getElementById(
+      "targetGap"
+    );
+
+
+  if (
+    moi &&
+    position === 0
+  ) {
+
+
+    const poursuivant =
+      scores[1];
+
+
+    targetName.textContent =
+      "👑 TU ES PRÉSIDENT DU BAOU";
+
+
+    if (poursuivant) {
+
+
+      const avance =
+        moi.total -
+        poursuivant.total;
+
+
+      targetScore.textContent =
+        poursuivant.prenom +
+        " est juste derrière avec " +
+        poursuivant.total +
+        " montée(s)";
+
+
+      targetGap.textContent =
+        "🔥 Tu as " +
+        avance +
+        " montée(s) d'avance. Surveille tes arrières !";
+
+    }
+
+    else {
+
+
+      targetScore.textContent =
+        "Personne derrière toi";
+
+
+      targetGap.textContent =
+        "Profite du trône 😎";
+
+    }
+
+  }
+
+  else if (moi) {
+
+
+    const cible =
+      scores[
+        position - 1
+      ];
+
+
+    const manque =
+      cible.total -
+      moi.total +
+      1;
+
+
+    targetName.textContent =
+      cible.prenom +
+      (
+        cible.nom
+        ?
+        " " + cible.nom
+        :
+        ""
+      );
+
+
+    targetScore.textContent =
+      cible.total +
+      " montée(s)";
+
+
+    targetGap.textContent =
+      "🔥 Encore " +
+      manque +
+      " montée(s) pour le dépasser";
+
+  }
+
+
+  afficherActivite();
 
 }
 
 
-/* =============================================
-   SCORES DE LA SEMAINE
-============================================= */
 
-const lundi =
-obtenirLundi();
-
-
-const scoresSemaine =
-participantsGlobal.map(
-p => {
-
-const total =
-monteesGlobal
-
-.filter(
-m =>
-Number(m.participant_id)
-===
-Number(p.id)
-&&
-new Date(m.created_at)
->=
-lundi
-)
-
-.reduce(
-(s,m) =>
-s +
-Number(m.nombre || 0),
-0
-);
-
-
-return {
-
-id:p.id,
-
-prenom:p.prenom,
-
-nom:p.nom,
-
-total:
-Math.max(0,total)
-
-};
-
-});
-
-
-scoresSemaine.sort(
-(a,b) =>
-b.total -
-a.total
-);
-
-
-/* =============================================
-   MA SEMAINE
-============================================= */
-
-const moiSemaine =
-scoresSemaine.find(
-p =>
-Number(p.id)
-===
-participantId
-);
-
-
-const totalSemaine =
-moiSemaine
-?
-moiSemaine.total
-:
-0;
-
-
-document
-.getElementById(
-"maSemaine"
-)
-.textContent =
-totalSemaine;
-
-
-document
-.getElementById(
-"semaine"
-)
-.textContent =
-totalSemaine;
-
-
-/* =============================================
-   ROI DE LA SEMAINE
-============================================= */
-
-const roi =
-scoresSemaine[0];
-
-
-if(
-roi &&
-roi.total > 0
-) {
-
-document
-.getElementById(
-"roiSemaine"
-)
-.textContent =
-`${roi.prenom} ${roi.nom || ""}`;
-
-
-document
-.getElementById(
-"roiSemaineScore"
-)
-.textContent =
-roi.total;
-
-}
-
-else {
-
-document
-.getElementById(
-"roiSemaine"
-)
-.textContent =
-"Le trône est libre 👀";
-
-
-document
-.getElementById(
-"roiSemaineScore"
-)
-.textContent =
-"0";
-
-}
-
-
-/* =============================================
-   PROCHAINE CIBLE
-============================================= */
-
-const targetName =
-document.getElementById(
-"targetName"
-);
-
-const targetScore =
-document.getElementById(
-"targetScore"
-);
-
-const targetGap =
-document.getElementById(
-"targetGap"
-);
-
-
-if(
-moi &&
-position === 0
-) {
-
-/*
-UTILISATEUR PREMIER
-*/
-
-const poursuivant =
-scores[1];
-
-
-targetName.textContent =
-"👑 TU ES PRÉSIDENT DU BAOU";
-
-
-if(poursuivant) {
-
-const avance =
-moi.total -
-poursuivant.total;
-
-
-targetScore.textContent =
-`${poursuivant.prenom} est juste derrière avec ${poursuivant.total} montée(s)`;
-
-
-targetGap.textContent =
-`🔥 Tu as ${avance} montée(s) d'avance. Surveille tes arrières !`;
-
-}
-
-else {
-
-targetScore.textContent =
-"Personne derrière toi";
-
-targetGap.textContent =
-"Profite du trône 😎";
-
-}
-
-}
-
-else if(moi) {
-
-/*
-PERSONNE JUSTE DEVANT
-*/
-
-const cible =
-scores[
-position-1
-];
-
-
-const manque =
-cible.total -
-moi.total +
-1;
-
-
-targetName.textContent =
-`${cible.prenom} ${cible.nom || ""}`;
-
-
-targetScore.textContent =
-`${cible.total} montée(s)`;
-
-
-targetGap.textContent =
-`🔥 Encore ${manque} montée(s) pour le dépasser`;
-
-}
-
-
-/* =============================================
+/* ===========================
    ACTIVITE RECENTE
-============================================= */
-
-afficherActivite();
-
-}
-
-
-/* =============================================
-   ACTIVITE
-============================================= */
+=========================== */
 
 function afficherActivite() {
 
-const zone =
-document.getElementById(
-"activite"
-);
+
+  const zone =
+    document.getElementById(
+      "activite"
+    );
 
 
-const activites =
-monteesGlobal
+  const activites =
+    monteesGlobal
 
-.filter(
-m =>
-Number(m.nombre) > 0
-)
+      .filter(
+        m =>
+          Number(
+            m.nombre
+          ) > 0
+      )
 
-.slice(
-0,
-5
-);
+      .slice(
+        0,
+        5
+      );
 
 
-if(
-activites.length === 0
-) {
+  if (
+    activites.length === 0
+  ) {
 
-zone.innerHTML =
-"<li>Aucune activité pour le moment.</li>";
+    zone.innerHTML =
+      "<li>Aucune activité pour le moment.</li>";
 
-return;
+    return;
+
+  }
+
+
+  zone.innerHTML =
+    "";
+
+
+  activites.forEach(
+    m => {
+
+
+      const participant =
+        participantsGlobal.find(
+          p =>
+            Number(p.id)
+            ===
+            Number(
+              m.participant_id
+            )
+        );
+
+
+      if (!participant) {
+
+        return;
+
+      }
+
+
+      const date =
+        new Date(
+          m.created_at
+        );
+
+
+      const texteDate =
+        date.toLocaleString(
+          "fr-FR",
+          {
+
+            day:
+              "2-digit",
+
+            month:
+              "2-digit",
+
+            hour:
+              "2-digit",
+
+            minute:
+              "2-digit"
+
+          }
+        );
+
+
+      zone.innerHTML += `
+
+      <li>
+
+      <div>
+
+      <span class="activity-name">
+
+      🔥 ${participant.prenom}
+
+      </span>
+
+      vient d'ajouter
+
+      <span class="activity-number">
+
+      +${m.nombre}
+
+      </span>
+
+      montée(s)
+
+      </div>
+
+      <div class="activity-date">
+
+      ${texteDate}
+
+      </div>
+
+      </li>
+
+      `;
+
+    }
+  );
 
 }
 
 
-zone.innerHTML =
-"";
 
-
-activites.forEach(
-m => {
-
-const participant =
-participantsGlobal.find(
-p =>
-Number(p.id)
-===
-Number(m.participant_id)
-);
-
-
-if(!participant)
-return;
-
-
-const date =
-new Date(
-m.created_at
-);
-
-
-const texteDate =
-date.toLocaleString(
-"fr-FR",
-{
-day:"2-digit",
-month:"2-digit",
-hour:"2-digit",
-minute:"2-digit"
-}
-);
-
-
-zone.innerHTML += `
-
-<li>
-
-<div>
-
-<span class="activity-name">
-
-🔥 ${participant.prenom}
-
-</span>
-
-vient d'ajouter
-
-<span class="activity-number">
-
-+${m.nombre}
-
-</span>
-
-montée(s)
-
-</div>
-
-<div class="activity-date">
-
-${texteDate}
-
-</div>
-
-</li>
-
-`;
-
-});
-
-}
-
-
-/* =============================================
-   VALIDATION MONTEES
-============================================= */
+/* ===========================
+   VALIDATION
+=========================== */
 
 async function valider() {
 
-const participantId =
-Number(
-document
-.getElementById(
-"participant"
-)
-.value
-);
+
+  const participantId =
+    Number(
+      document
+        .getElementById(
+          "participant"
+        )
+        .value
+    );
 
 
-if(!participantId) {
+  if (!participantId) {
 
-alert(
-"Choisis ton nom."
-);
+    alert(
+      "Choisis ton nom."
+    );
 
-return;
+    return;
+
+  }
+
+
+  const bouton =
+    document.getElementById(
+      "boutonValider"
+    );
+
+
+  bouton.disabled =
+    true;
+
+
+  bouton.textContent =
+    "ENREGISTREMENT...";
+
+
+  const {
+    error
+  } =
+    await db
+      .from(
+        "montees"
+      )
+      .insert(
+        [
+          {
+
+            participant_id:
+              participantId,
+
+            nombre:
+              nombre
+
+          }
+        ]
+      );
+
+
+  if (error) {
+
+
+    alert(
+      "Erreur Supabase : "
+      +
+      error.message
+    );
+
+
+    bouton.disabled =
+      false;
+
+
+    bouton.textContent =
+      "VALIDER MES MONTÉES";
+
+
+    return;
+
+  }
+
+
+  const ajoute =
+    nombre;
+
+
+  nombre =
+    1;
+
+
+  afficher();
+
+
+  bouton.disabled =
+    false;
+
+
+  bouton.textContent =
+    "VALIDER MES MONTÉES";
+
+
+  await chargerDonnees();
+
+
+  alert(
+    "🔥 +" +
+    ajoute +
+    " montée(s) enregistrée(s) !"
+  );
 
 }
 
 
-const bouton =
-document.getElementById(
-"boutonValider"
-);
 
-
-bouton.disabled =
-true;
-
-
-bouton.textContent =
-"ENREGISTREMENT...";
-
-
-const {error} =
-await db
-.from("montees")
-.insert([
-{
-
-participant_id:
-participantId,
-
-nombre:
-nombre
-
-}
-]);
-
-
-if(error) {
-
-alert(
-"Erreur Supabase : "
-+
-error.message
-);
-
-
-bouton.disabled =
-false;
-
-
-bouton.textContent =
-"VALIDER MES MONTÉES";
-
-
-return;
-
-}
-
-
-const ajoute =
-nombre;
-
-
-nombre =
-1;
-
-
-afficher();
-
-
-bouton.disabled =
-false;
-
-
-bouton.textContent =
-"VALIDER MES MONTÉES";
-
-
-await chargerDonnees();
-
-
-alert(
-`🔥 +${ajoute} montée(s) enregistrée(s) !`
-);
-
-}
-
-
-/* =============================================
+/* ===========================
    CORRECTION
-============================================= */
+=========================== */
 
 async function corriger() {
 
-const participantId =
-Number(
-document
-.getElementById(
-"participant"
-)
-.value
-);
+
+  const participantId =
+    Number(
+      document
+        .getElementById(
+          "participant"
+        )
+        .value
+    );
 
 
-const retrait =
-prompt(
-"Combien de montées veux-tu retirer ?"
-);
+  const retrait =
+    prompt(
+      "Combien de montées veux-tu retirer ?"
+    );
 
 
-const valeur =
-Number(retrait);
+  const valeur =
+    Number(
+      retrait
+    );
 
 
-if(
-!valeur ||
-valeur <= 0
-) return;
+  if (
+    !valeur ||
+    valeur <= 0
+  ) {
+
+    return;
+
+  }
 
 
-if(
-!confirm(
-`Retirer ${valeur} montée(s) de ton total ?`
-)
-) return;
+  if (
+    !confirm(
+      "Retirer " +
+      valeur +
+      " montée(s) de ton total ?"
+    )
+  ) {
+
+    return;
+
+  }
 
 
-const {error} =
-await db
-.from("montees")
-.insert([
-{
+  const {
+    error
+  } =
+    await db
+      .from(
+        "montees"
+      )
+      .insert(
+        [
+          {
 
-participant_id:
-participantId,
+            participant_id:
+              participantId,
 
-nombre:
--valeur
+            nombre:
+              -valeur
+
+          }
+        ]
+      );
+
+
+  if (error) {
+
+
+    alert(
+      "Erreur : " +
+      error.message
+    );
+
+
+    return;
+
+  }
+
+
+  await chargerDonnees();
 
 }
-]);
 
 
-if(error) {
 
-alert(
-"Erreur : "
-+
-error.message
-);
-
-return;
-
-}
-
-
-await chargerDonnees();
-
-}
-
-
-/* =============================================
-   COMPTE A REBOURS
-============================================= */
+/* ===========================
+   COUNTDOWN
+=========================== */
 
 function actualiserCountdown() {
 
-const fin =
-new Date(
-"2027-05-02T20:00:00+02:00"
-);
+
+  const fin =
+    new Date(
+      "2027-05-02T20:00:00+02:00"
+    );
 
 
-const maintenant =
-new Date();
+  const maintenant =
+    new Date();
 
 
-let difference =
-fin -
-maintenant;
+  let difference =
+    fin -
+    maintenant;
 
 
-if(
-difference <= 0
-) {
+  if (
+    difference <= 0
+  ) {
 
-document
-.getElementById(
-"countdown"
-)
-.textContent =
-"🏁 CHALLENGE TERMINÉ";
 
-return;
+    document
+      .getElementById(
+        "countdown"
+      )
+      .textContent =
+        "🏁 CHALLENGE TERMINÉ";
+
+
+    return;
+
+  }
+
+
+  const jours =
+    Math.floor(
+      difference /
+      (
+        1000 *
+        60 *
+        60 *
+        24
+      )
+    );
+
+
+  difference -=
+    jours *
+    1000 *
+    60 *
+    60 *
+    24;
+
+
+  const heures =
+    Math.floor(
+      difference /
+      (
+        1000 *
+        60 *
+        60
+      )
+    );
+
+
+  difference -=
+    heures *
+    1000 *
+    60 *
+    60;
+
+
+  const minutes =
+    Math.floor(
+      difference /
+      (
+        1000 *
+        60
+      )
+    );
+
+
+  const secondes =
+    Math.floor(
+      (
+        difference %
+        (
+          1000 *
+          60
+        )
+      )
+      /
+      1000
+    );
+
+
+  document
+    .getElementById(
+      "countdown"
+    )
+    .textContent =
+
+      jours +
+      "j " +
+
+      String(
+        heures
+      )
+      .padStart(
+        2,
+        "0"
+      )
+      +
+      "h " +
+
+      String(
+        minutes
+      )
+      .padStart(
+        2,
+        "0"
+      )
+      +
+      "m " +
+
+      String(
+        secondes
+      )
+      .padStart(
+        2,
+        "0"
+      )
+      +
+      "s";
 
 }
 
 
-const jours =
-Math.floor(
-difference /
-(1000*60*60*24)
-);
 
-
-difference -=
-jours *
-1000*60*60*24;
-
-
-const heures =
-Math.floor(
-difference /
-(1000*60*60)
-);
-
-
-difference -=
-heures *
-1000*60*60;
-
-
-const minutes =
-Math.floor(
-difference /
-(1000*60)
-);
-
-
-const secondes =
-Math.floor(
-(
-difference %
-(1000*60)
-)
-/1000
-);
-
-
-document
-.getElementById(
-"countdown"
-)
-.textContent =
-
-jours+"j "
-
-+
-
-String(heures)
-.padStart(2,"0")
-+"h "
-
-+
-
-String(minutes)
-.padStart(2,"0")
-+"m "
-
-+
-
-String(secondes)
-.padStart(2,"0")
-+"s";
-
-}
-
-
-/* =============================================
+/* ===========================
    DEMARRAGE
-============================================= */
+=========================== */
 
 async function demarrer() {
 
-await chargerParticipants();
 
-await chargerDonnees();
+  await chargerParticipants();
 
-actualiserCountdown();
 
-setInterval(
-actualiserCountdown,
-1000
-);
+  await chargerDonnees();
+
+
+  actualiserCountdown();
+
+
+  setInterval(
+    actualiserCountdown,
+    1000
+  );
 
 }
 
@@ -1677,4 +2282,5 @@ demarrer();
 </script>
 
 </body>
+
 </html>
