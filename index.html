@@ -3,19 +3,42 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <meta name="theme-color" content="#111111">
 
 <title>Le Président du Baou</title>
 
-<!-- ICONE APPLICATION -->
-<link rel="icon" type="image/png" href="icone-coq.png">
-<link rel="apple-touch-icon" href="icone-coq.png">
+<!-- ===========================
+     PWA / ICONE
+=========================== -->
 
-<!-- COMPORTEMENT APPLICATION SUR IPHONE -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Président du Baou">
+<link rel="manifest" href="manifest.json">
+
+<link rel="icon"
+type="image/png"
+href="icone-coq.png">
+
+<link rel="apple-touch-icon"
+href="icone-coq.png">
+
+<meta name="application-name"
+content="Président du Baou">
+
+<meta name="mobile-web-app-capable"
+content="yes">
+
+<meta name="apple-mobile-web-app-capable"
+content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+content="black-translucent">
+
+<meta name="apple-mobile-web-app-title"
+content="Président du Baou">
+
 
 <style>
 
@@ -29,6 +52,7 @@ body {
   background: #f3f3f3;
   color: #171717;
 }
+
 
 /* ===========================
    HEADER
@@ -90,11 +114,8 @@ body {
 
 .card {
   background: white;
-
   border-radius: 18px;
-
   padding: 22px;
-
   margin-bottom: 18px;
 
   box-shadow:
@@ -113,61 +134,44 @@ h2 {
 
 select {
   width: 100%;
-
   padding: 15px;
 
   border-radius: 11px;
-
   border: 1px solid #ccc;
 
   font-size: 17px;
-
   background: white;
 }
 
 
 /* ===========================
-   STATS PERSONNELLES
+   STATS
 =========================== */
 
 .stats {
-
   display: grid;
-
   grid-template-columns:
     repeat(3,1fr);
-
   gap: 10px;
 }
 
 .stat {
-
   background: #f5f5f5;
-
   border-radius: 12px;
-
   padding: 18px 5px;
-
   text-align: center;
 }
 
 .stat-number {
-
   font-size: 31px;
-
   font-weight: 800;
-
   color: #df171d;
 }
 
 .stat-label {
-
   font-size: 11px;
-
   font-weight: bold;
-
   margin-top: 6px;
-
   text-transform: uppercase;
 }
 
@@ -177,55 +181,39 @@ select {
 =========================== */
 
 .target {
-
   background: #111;
-
   color: white;
-
   text-align: center;
 }
 
 .target-title {
-
   opacity: .7;
-
   font-size: 13px;
-
   font-weight: bold;
-
   letter-spacing: 1px;
 }
 
 .target-name {
-
   color: #ed171d;
-
   font-size: 27px;
-
   font-weight: 800;
-
   margin: 12px 0 5px;
 }
 
 .target-score {
-
   opacity: .8;
-
   font-size: 14px;
 }
 
 .target-gap {
-
   font-size: 18px;
-
   font-weight: bold;
-
   margin-top: 14px;
 }
 
 
 /* ===========================
-   ROI DE LA SEMAINE
+   ROI SEMAINE
 =========================== */
 
 .king-week {
@@ -233,31 +221,21 @@ select {
 }
 
 .king-week-name {
-
   font-size: 27px;
-
   font-weight: 800;
-
   margin-top: 10px;
 }
 
 .king-week-score {
-
   color: #df171d;
-
   font-size: 38px;
-
   font-weight: 800;
-
   margin: 5px 0;
 }
 
 .king-week-label {
-
   color: #777;
-
   font-size: 12px;
-
   font-weight: bold;
 }
 
@@ -267,22 +245,15 @@ select {
 =========================== */
 
 .week-number {
-
   color: #df171d;
-
   font-size: 46px;
-
   font-weight: 800;
-
   text-align: center;
 }
 
 .week-label {
-
   text-align: center;
-
   font-size: 13px;
-
   font-weight: bold;
 }
 
@@ -292,76 +263,56 @@ select {
 =========================== */
 
 .counter {
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 28px;
-
   margin: 24px 0;
 }
 
 .counter button {
-
   width: 58px;
-
   height: 58px;
 
   border-radius: 50%;
-
   border: none;
 
   background: #202020;
-
   color: white;
 
   font-size: 31px;
-
   cursor: pointer;
 }
 
 #nombre {
-
   font-size: 43px;
-
   font-weight: bold;
-
   min-width: 50px;
-
   text-align: center;
 }
 
 
 /* ===========================
-   BOUTON VALIDATION
+   VALIDATION
 =========================== */
 
 .validate {
-
   width: 100%;
-
   padding: 17px;
 
   border: none;
-
   border-radius: 11px;
 
   background: #e1171e;
-
   color: white;
 
   font-size: 17px;
-
   font-weight: bold;
 
   cursor: pointer;
 }
 
 .validate:disabled {
-
   opacity: .5;
 }
 
@@ -371,16 +322,12 @@ select {
 =========================== */
 
 .correction {
-
   margin-top: 15px;
-
   text-align: center;
 }
 
 .correction button {
-
   border: 0;
-
   background: none;
 
   color: #d71920;
@@ -388,7 +335,6 @@ select {
   text-decoration: underline;
 
   cursor: pointer;
-
   font-size: 14px;
 }
 
@@ -398,18 +344,13 @@ select {
 =========================== */
 
 .ranking {
-
   list-style: none;
-
   margin: 0;
-
   padding: 0;
 }
 
 .ranking li {
-
   display: flex;
-
   justify-content: space-between;
 
   padding: 13px 5px;
@@ -418,14 +359,11 @@ select {
 }
 
 .ranking li:last-child {
-
   border-bottom: none;
 }
 
 .score {
-
   font-weight: bold;
-
   font-size: 19px;
 }
 
@@ -435,44 +373,32 @@ select {
 =========================== */
 
 .activity {
-
   list-style: none;
-
   margin: 0;
-
   padding: 0;
 }
 
 .activity li {
-
   padding: 14px 3px;
-
   border-bottom: 1px solid #eee;
 }
 
 .activity li:last-child {
-
   border-bottom: none;
 }
 
 .activity-name {
-
   font-weight: bold;
 }
 
 .activity-number {
-
   color: #df171d;
-
   font-weight: bold;
 }
 
 .activity-date {
-
   color: #888;
-
   font-size: 12px;
-
   margin-top: 4px;
 }
 
@@ -482,22 +408,15 @@ select {
 =========================== */
 
 .total {
-
   background: #111;
-
   color: white;
-
   text-align: center;
 }
 
 .total-number {
-
   color: #ed171d;
-
   font-size: 54px;
-
   font-weight: 800;
-
   margin: 8px 0;
 }
 
@@ -507,9 +426,7 @@ select {
 =========================== */
 
 .countdown {
-
   background: #e1171e;
-
   color: white;
 
   text-align: center;
@@ -517,7 +434,6 @@ select {
   border-radius: 18px;
 
   padding: 22px 15px;
-
   margin-bottom: 18px;
 
   box-shadow:
@@ -525,34 +441,24 @@ select {
 }
 
 .countdown-title {
-
   font-size: 14px;
-
   font-weight: bold;
 }
 
 .countdown-number {
-
   font-size: 31px;
-
   font-weight: 800;
-
   margin: 7px 0;
 }
 
 .countdown-date {
-
   font-size: 13px;
 }
 
 .small {
-
   text-align: center;
-
   color: #777;
-
   font-size: 12px;
-
   padding-bottom: 25px;
 }
 
@@ -698,17 +604,13 @@ Cette semaine
 <section class="card target">
 
 <div class="target-title">
-
 ⚔️ PROCHAINE CIBLE
-
 </div>
 
 <div
 class="target-name"
 id="targetName">
-
 Calcul...
-
 </div>
 
 <div
@@ -736,23 +638,17 @@ id="targetGap">
 <div
 class="king-week-name"
 id="roiSemaine">
-
 Calcul...
-
 </div>
 
 <div
 class="king-week-score"
 id="roiSemaineScore">
-
 0
-
 </div>
 
 <div class="king-week-label">
-
 MONTÉES DEPUIS LUNDI
-
 </div>
 
 </section>
@@ -770,15 +666,11 @@ MONTÉES DEPUIS LUNDI
 <div
 class="week-number"
 id="semaine">
-
 0
-
 </div>
 
 <div class="week-label">
-
 MES MONTÉES DEPUIS LUNDI
-
 </div>
 
 </section>
@@ -883,23 +775,17 @@ Chargement...
 <section class="card total">
 
 <div>
-
 TOTAL DES MONTÉES DU CLUB
-
 </div>
 
 <div
 class="total-number"
 id="totalClub">
-
 0
-
 </div>
 
 <div>
-
 🔥 Ça commence à chauffer dans le Baou !
-
 </div>
 
 </section>
@@ -911,37 +797,28 @@ id="totalClub">
 <section class="countdown">
 
 <div class="countdown-title">
-
 ⏱ FIN DU CHALLENGE DANS
-
 </div>
 
 <div
 class="countdown-number"
 id="countdown">
-
 Calcul...
-
 </div>
 
 <div class="countdown-date">
-
 Fin le dimanche 2 mai 2027 à 20h00
-
 </div>
 
 </section>
 
 
 <div class="small">
-
 Président du Baou • Team Trail Loisir
-
 </div>
 
 
 </main>
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -973,7 +850,6 @@ let participantsGlobal = [];
 let monteesGlobal = [];
 
 let scoresGlobal = [];
-
 
 
 /* ===========================
@@ -1088,7 +964,6 @@ async function chargerParticipants() {
 }
 
 
-
 /* ===========================
    COMPTEUR
 =========================== */
@@ -1125,7 +1000,6 @@ function moins() {
   }
 
 }
-
 
 
 /* ===========================
@@ -1167,7 +1041,6 @@ async function chargerDonnees() {
   actualiser();
 
 }
-
 
 
 /* ===========================
@@ -1218,7 +1091,6 @@ function obtenirLundi() {
 }
 
 
-
 /* ===========================
    ACTUALISATION
 =========================== */
@@ -1242,7 +1114,6 @@ function actualiser() {
         )
         .value
     );
-
 
 
   /* SCORES GENERAUX */
@@ -1310,10 +1181,7 @@ function actualiser() {
     scores;
 
 
-
-  /* ===========================
-     CLASSEMENT
-  =========================== */
+  /* CLASSEMENT */
 
   const classement =
     document.getElementById(
@@ -1412,7 +1280,6 @@ function actualiser() {
   );
 
 
-
   /* TOTAL CLUB */
 
   const totalClub =
@@ -1431,10 +1298,7 @@ function actualiser() {
       totalClub;
 
 
-
-  /* ===========================
-     MON CLASSEMENT
-  =========================== */
+  /* MON CLASSEMENT */
 
   const position =
     scores.findIndex(
@@ -1470,10 +1334,7 @@ function actualiser() {
   }
 
 
-
-  /* ===========================
-     SEMAINE
-  =========================== */
+  /* SEMAINE */
 
   const lundi =
     obtenirLundi();
@@ -1546,7 +1407,6 @@ function actualiser() {
   );
 
 
-
   /* MA SEMAINE */
 
   const moiSemaine =
@@ -1582,10 +1442,7 @@ function actualiser() {
       totalSemaine;
 
 
-
-  /* ===========================
-     ROI SEMAINE
-  =========================== */
+  /* ROI SEMAINE */
 
   const roi =
     scoresSemaine[0];
@@ -1642,10 +1499,7 @@ function actualiser() {
   }
 
 
-
-  /* ===========================
-     PROCHAINE CIBLE
-  =========================== */
+  /* PROCHAINE CIBLE */
 
   const targetName =
     document.getElementById(
@@ -1757,7 +1611,6 @@ function actualiser() {
   afficherActivite();
 
 }
-
 
 
 /* ===========================
@@ -1894,7 +1747,6 @@ function afficherActivite() {
 }
 
 
-
 /* ===========================
    VALIDATION
 =========================== */
@@ -2013,7 +1865,6 @@ async function valider() {
 }
 
 
-
 /* ===========================
    CORRECTION
 =========================== */
@@ -2105,7 +1956,6 @@ async function corriger() {
   await chargerDonnees();
 
 }
-
 
 
 /* ===========================
@@ -2252,7 +2102,6 @@ function actualiserCountdown() {
 }
 
 
-
 /* ===========================
    DEMARRAGE
 =========================== */
@@ -2278,6 +2127,49 @@ async function demarrer() {
 
 
 demarrer();
+
+
+/* ===========================
+   PWA - SERVICE WORKER
+=========================== */
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      navigator.serviceWorker
+        .register(
+          "./service-worker.js"
+        )
+
+        .then(
+          registration => {
+
+            console.log(
+              "Président du Baou PWA activée 👑",
+              registration
+            );
+
+          }
+        )
+
+        .catch(
+          error => {
+
+            console.error(
+              "Erreur Service Worker :",
+              error
+            );
+
+          }
+        );
+
+    }
+  );
+
+}
 
 </script>
 
