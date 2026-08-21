@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#111111">
 
-<title>Président du Baou</title>
+<title>Le Président du Baou</title>
 
 <style>
-
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #f4f4f4;
+  background: #f3f3f3;
   color: #171717;
 }
 
 .header {
-  background: #111;
+  position: relative;
+  min-height: 280px;
+  background:
+    linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.60)),
+    url("baou-header.jpg") center center / cover no-repeat;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 28px 20px;
+  padding: 30px 20px;
+}
+
+.header-content {
+  text-shadow: 0 3px 10px rgba(0,0,0,.8);
 }
 
 .crown {
-  font-size: 42px;
+  font-size: 52px;
 }
 
 .header h1 {
-  margin: 5px 0;
-  font-size: 28px;
+  margin: 8px 0 4px;
+  font-size: 34px;
   text-transform: uppercase;
 }
 
 .header p {
-  margin: 5px 0 0;
-  opacity: .75;
+  margin: 0;
+  font-size: 17px;
 }
 
 .container {
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
-  padding: 20px;
+  padding: 18px;
 }
 
 .card {
@@ -58,121 +65,64 @@ body {
 }
 
 h2 {
-  margin-top: 0;
-  font-size: 21px;
+  margin: 0 0 18px;
+  font-size: 20px;
 }
 
-h3 {
-  margin-top: 20px;
-}
-
-input,
 select {
   width: 100%;
-  padding: 14px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 11px;
   border: 1px solid #ccc;
   font-size: 17px;
   background: white;
-  margin-bottom: 12px;
-}
-
-.btn {
-  width: 100%;
-  padding: 16px;
-  border: none;
-  border-radius: 12px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.btn-red {
-  background: #d71920;
-  color: white;
-}
-
-.btn-dark {
-  background: #222;
-  color: white;
-}
-
-.btn-light {
-  background: #eee;
-  color: #222;
-  margin-top: 10px;
-}
-
-.btn:disabled {
-  opacity: .55;
-  cursor: wait;
-}
-
-.welcome {
-  text-align: center;
-}
-
-.welcome-name {
-  font-size: 27px;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-.change-user {
-  border: none;
-  background: none;
-  text-decoration: underline;
-  color: #777;
-  cursor: pointer;
-  margin-top: 8px;
-}
-
-
-/* TABLEAU PERSONNEL */
-
-.dashboard {
-  text-align: center;
 }
 
 .stats {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 10px;
-  margin-top: 20px;
 }
 
 .stat {
-  background: #f4f4f4;
-  border-radius: 14px;
-  padding: 15px 5px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 18px 5px;
+  text-align: center;
 }
 
 .stat-number {
-  font-size: 27px;
-  font-weight: bold;
+  font-size: 31px;
+  font-weight: 800;
+  color: #df171d;
 }
 
 .stat-label {
-  font-size: 12px;
-  color: #777;
-  margin-top: 5px;
-}
-
-.leader-message {
-  margin-top: 18px;
+  font-size: 11px;
   font-weight: bold;
-  font-size: 17px;
+  margin-top: 6px;
+  text-transform: uppercase;
 }
 
+.week-number {
+  color: #df171d;
+  font-size: 46px;
+  font-weight: 800;
+  text-align: center;
+}
 
-/* COMPTEUR */
+.week-label {
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+}
 
 .counter {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 28px;
-  margin: 25px 0;
+  margin: 24px 0;
 }
 
 .counter button {
@@ -180,68 +130,60 @@ select {
   height: 58px;
   border-radius: 50%;
   border: none;
-  background: #222;
+  background: #202020;
   color: white;
   font-size: 31px;
   cursor: pointer;
 }
 
 #nombre {
-  font-size: 44px;
+  font-size: 43px;
   font-weight: bold;
-  min-width: 55px;
+  min-width: 50px;
   text-align: center;
 }
 
-
-/* CORRECTION */
-
-.correction-link {
-  display: block;
-  margin: 18px auto 0;
+.validate {
+  width: 100%;
+  padding: 17px;
   border: none;
+  border-radius: 11px;
+  background: #e1171e;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.validate:disabled {
+  opacity: .5;
+}
+
+.correction {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.correction button {
+  border: 0;
   background: none;
-  color: #777;
+  color: #d71920;
   text-decoration: underline;
   cursor: pointer;
   font-size: 14px;
 }
 
-.correction-zone {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
-}
-
-.correction-title {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.correction-info {
-  text-align: center;
-  color: #777;
-  font-size: 13px;
-  margin-bottom: 15px;
-}
-
-
-/* CLASSEMENT */
-
 .ranking {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .ranking li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 15px 5px;
+  padding: 13px 5px;
   border-bottom: 1px solid #eee;
-  font-size: 17px;
 }
 
 .ranking li:last-child {
@@ -249,17 +191,9 @@ select {
 }
 
 .score {
-  font-size: 20px;
   font-weight: bold;
+  font-size: 19px;
 }
-
-.moi {
-  font-weight: bold;
-  background: #fafafa;
-}
-
-
-/* TOTAL */
 
 .total {
   background: #111;
@@ -268,411 +202,181 @@ select {
 }
 
 .total-number {
-  font-size: 44px;
+  color: #ed171d;
+  font-size: 54px;
+  font-weight: 800;
+  margin: 8px 0;
+}
+
+/* COMPTE À REBOURS */
+
+.countdown {
+  background: #e1171e;
+  color: white;
+  text-align: center;
+  border-radius: 18px;
+  padding: 22px 15px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.12);
+}
+
+.countdown-title {
+  font-size: 14px;
   font-weight: bold;
-  margin: 5px;
+  text-transform: uppercase;
+}
+
+.countdown-number {
+  font-size: 31px;
+  font-weight: 800;
+  margin: 7px 0;
+}
+
+.countdown-date {
+  font-size: 13px;
 }
 
 .small {
-  color: #777;
-  font-size: 13px;
   text-align: center;
-  margin: 20px 0;
-}
-
-.info {
   color: #777;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 12px;
+  padding-bottom: 25px;
 }
 
-.error {
+.erreur {
   color: #c00;
 }
 
-.hidden {
-  display: none;
-}
+@media(max-width:500px) {
 
+  .header {
+    min-height: 220px;
+  }
+
+  .header h1 {
+    font-size: 27px;
+  }
+
+  .crown {
+    font-size: 43px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
 </style>
 </head>
 
-
 <body>
 
-
 <header class="header">
-
-<div class="crown">👑</div>
-
-<h1>Le Président du Baou</h1>
-
-<p>Challenge Team Trail Loisir</p>
-
+  <div class="header-content">
+    <div class="crown">👑</div>
+    <h1>Le Président du Baou</h1>
+    <p>Challenge Team Trail Loisir</p>
+  </div>
 </header>
-
 
 <main class="container">
 
+<section class="card">
+<h2>👋 Qui es-tu ?</h2>
 
-<!-- =========================
-     IDENTIFICATION
-========================= -->
-
-<section
-id="identification"
-class="card hidden">
-
-<h2>Bienvenue 👋</h2>
-
-<p class="info">
-Pour participer au challenge, identifie-toi une seule fois.
-Ton téléphone se souviendra ensuite de toi.
-</p>
-
-
-<h3>Je participe pour la première fois</h3>
-
-<input
-type="text"
-id="nouveauPrenom"
-placeholder="Prénom"
-autocomplete="given-name">
-
-<input
-type="text"
-id="nouveauNom"
-placeholder="Nom"
-autocomplete="family-name">
-
-
-<button
-class="btn btn-red"
-id="boutonInscription"
-onclick="inscrireParticipant()">
-
-JE PARTICIPE
-
-</button>
-
-
-<hr style="
-margin:25px 0;
-border:0;
-border-top:1px solid #eee;
-">
-
-
-<h3>Je suis déjà inscrit</h3>
-
-<select id="participantExistant">
-
-<option value="">
-Chargement...
-</option>
-
+<select id="participant" onchange="actualiser()">
+<option value="">Chargement des participants...</option>
 </select>
-
-
-<button
-class="btn btn-dark"
-onclick="choisirParticipantExistant()">
-
-C'EST MOI
-
-</button>
-
 </section>
 
 
+<section class="card">
 
-<!-- =========================
-     PROFIL
-========================= -->
-
-<section
-id="profil"
-class="card welcome hidden">
-
-<div>👋 Salut</div>
-
-<div
-class="welcome-name"
-id="nomUtilisateur">
-</div>
-
-<button
-class="change-user"
-onclick="changerUtilisateur()">
-
-Ce n'est pas moi
-
-</button>
-
-</section>
-
-
-
-<!-- =========================
-     TABLEAU PERSONNEL
-========================= -->
-
-<section
-id="tableauPersonnel"
-class="card dashboard hidden">
-
-<h2>Mon challenge 👑</h2>
-
+<h2>MON CHALLENGE 👑</h2>
 
 <div class="stats">
 
+<div class="stat">
+<div class="stat-number" id="mesMontees">0</div>
+<div class="stat-label">Mes montées</div>
+</div>
 
 <div class="stat">
-
-<div
-class="stat-number"
-id="mesMontees">
-0
+<div class="stat-number" id="monClassement">-</div>
+<div class="stat-label">Classement</div>
 </div>
-
-<div class="stat-label">
-MES MONTÉES
-</div>
-
-</div>
-
-
 
 <div class="stat">
-
-<div
-class="stat-number"
-id="monRang">
--
-</div>
-
-<div class="stat-label">
-CLASSEMENT
+<div class="stat-number" id="maSemaine">0</div>
+<div class="stat-label">Cette semaine</div>
 </div>
 
 </div>
-
-
-
-<div class="stat">
-
-<div
-class="stat-number"
-id="ecartLeader">
--
-</div>
-
-<div class="stat-label">
-ÉCART LEADER
-</div>
-
-</div>
-
-
-</div>
-
-
-<div
-class="leader-message"
-id="messageLeader">
-</div>
-
 
 </section>
 
 
+<section class="card">
 
-<!-- =========================
-     AJOUT MONTEES
-========================= -->
+<h2>🔥 CETTE SEMAINE</h2>
 
-<section
-id="zoneMontees"
-class="card hidden">
+<div class="week-number" id="semaine">0</div>
+
+<div class="week-label">
+MONTÉES DEPUIS LUNDI
+</div>
+
+</section>
 
 
-<h2>
-Combien de montées aujourd'hui ?
-</h2>
+<section class="card">
 
+<h2>Combien de montées aujourd'hui ?</h2>
 
 <div class="counter">
 
+<button onclick="moins()">−</button>
 
-<button onclick="moins()">
-−
-</button>
+<div id="nombre">1</div>
 
-
-<div id="nombre">
-1
-</div>
-
-
-<button onclick="plus()">
-+
-</button>
-
+<button onclick="plus()">+</button>
 
 </div>
-
 
 <button
-class="btn btn-red"
+class="validate"
 id="boutonValider"
-onclick="validerMontees()">
+onclick="valider()">
 
 VALIDER MES MONTÉES
 
 </button>
 
-
-<button
-class="correction-link"
-onclick="afficherCorrection()">
-
+<div class="correction">
+<button onclick="corriger()">
 J'ai fait une erreur de saisie
-
 </button>
-
-
-
-<!-- CORRECTION -->
-
-<div
-id="zoneCorrection"
-class="correction-zone hidden">
-
-
-<div class="correction-title">
-
-Corriger mes montées
-
 </div>
-
-
-<div class="correction-info">
-
-Indique le nombre de montées
-à retirer de ton total.
-
-</div>
-
-
-<select id="nombreCorrection">
-
-<option value="1">
-Retirer 1 montée
-</option>
-
-<option value="2">
-Retirer 2 montées
-</option>
-
-<option value="3">
-Retirer 3 montées
-</option>
-
-<option value="4">
-Retirer 4 montées
-</option>
-
-<option value="5">
-Retirer 5 montées
-</option>
-
-<option value="6">
-Retirer 6 montées
-</option>
-
-<option value="7">
-Retirer 7 montées
-</option>
-
-<option value="8">
-Retirer 8 montées
-</option>
-
-<option value="9">
-Retirer 9 montées
-</option>
-
-<option value="10">
-Retirer 10 montées
-</option>
-
-</select>
-
-
-<button
-class="btn btn-dark"
-id="boutonCorrection"
-onclick="corrigerMontees()">
-
-CONFIRMER LA CORRECTION
-
-</button>
-
-
-<button
-class="btn btn-light"
-onclick="masquerCorrection()">
-
-ANNULER
-
-</button>
-
-
-</div>
-
 
 </section>
 
 
-
-<!-- =========================
-     CLASSEMENT
-========================= -->
-
 <section class="card">
 
-<h2>🏆 Classement</h2>
+<h2>🏆 CLASSEMENT</h2>
 
-<ul
-class="ranking"
-id="classement">
-
-<li>
-Chargement...
-</li>
-
+<ul class="ranking" id="classement">
+<li>Chargement...</li>
 </ul>
 
 </section>
 
 
-
-<!-- =========================
-     TOTAL CLUB
-========================= -->
-
 <section class="card total">
 
-<div>
-Total des montées du club
-</div>
+<div>TOTAL DES MONTÉES DU CLUB</div>
 
-<div
-class="total-number"
-id="totalClub">
-
+<div class="total-number" id="totalClub">
 0
-
 </div>
 
 <div>
@@ -682,34 +386,39 @@ id="totalClub">
 </section>
 
 
-<div class="small">
+<section class="countdown">
 
-Président du Baou • Team Trail Loisir
-
+<div class="countdown-title">
+⏱ FIN DU CHALLENGE DANS
 </div>
 
+<div class="countdown-number" id="countdown">
+Calcul...
+</div>
+
+<div class="countdown-date">
+Fin le dimanche 2 mai 2027 à 20h00
+</div>
+
+</section>
+
+
+<div class="small">
+Président du Baou • Team Trail Loisir
+</div>
 
 </main>
 
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
-
-
-/* ==================================================
-   SUPABASE
-================================================== */
 
 const SUPABASE_URL =
 "https://fcizyahrzowsrorxuapv.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_2K01tIDQQiEgBJR3b3c1nw_NJEtXJ8r";
-
 
 const db =
 supabase.createClient(
@@ -717,1370 +426,455 @@ SUPABASE_URL,
 SUPABASE_KEY
 );
 
-
-
-/* ==================================================
-   VARIABLES
-================================================== */
-
 let nombre = 1;
-
-let utilisateur = null;
-
-let scoresActuels = [];
+let participantsGlobal = [];
+let monteesGlobal = [];
 
 
+/* PARTICIPANTS */
 
-/* ==================================================
-   COMPTEUR
-================================================== */
-
-function afficherNombre() {
-
-document
-.getElementById("nombre")
-.textContent =
-nombre;
-
-}
-
-
-function plus() {
-
-nombre++;
-
-afficherNombre();
-
-}
-
-
-function moins() {
-
-if (nombre > 1) {
-
-nombre--;
-
-afficherNombre();
-
-}
-
-}
-
-
-
-/* ==================================================
-   PARTICIPANTS EXISTANTS
-================================================== */
-
-async function chargerParticipantsExistants() {
-
+async function chargerParticipants() {
 
 const select =
-document.getElementById(
-"participantExistant"
-);
+document.getElementById("participant");
 
-
-const {
-data,
-error
-} =
-
-await db
-.from("participants")
-.select("id, prenom, nom");
-
-
-if (error) {
-
-console.error(error);
-
-select.innerHTML =
-'<option value="">Erreur de chargement</option>';
-
-return;
-
-}
-
-
-data.sort(
-(a,b) =>
-
-`${a.prenom} ${a.nom || ""}`
-.localeCompare(
-
-`${b.prenom} ${b.nom || ""}`,
-
-"fr"
-
-)
-
-);
-
-
-select.innerHTML =
-'<option value="">Choisis ton nom...</option>';
-
-
-data.forEach(
-participant => {
-
-
-const option =
-document.createElement(
-"option"
-);
-
-
-option.value =
-participant.id;
-
-
-option.textContent =
-`${participant.prenom} ${participant.nom || ""}`
-.trim();
-
-
-select.appendChild(
-option
-);
-
-
-}
-);
-
-}
-
-
-
-/* ==================================================
-   INSCRIPTION
-================================================== */
-
-async function inscrireParticipant() {
-
-
-const prenom =
-document
-.getElementById("nouveauPrenom")
-.value
-.trim();
-
-
-const nom =
-document
-.getElementById("nouveauNom")
-.value
-.trim();
-
-
-if (!prenom || !nom) {
-
-alert(
-"Indique ton prénom et ton nom."
-);
-
-return;
-
-}
-
-
-
-const bouton =
-document.getElementById(
-"boutonInscription"
-);
-
-
-bouton.disabled = true;
-
-bouton.textContent =
-"INSCRIPTION...";
-
-
-
-/* VERIFICATION DOUBLON */
-
-const {
-data: existants,
-error: erreurRecherche
-} =
-
+const {data,error} =
 await db
 .from("participants")
 .select("id, prenom, nom")
-.ilike("prenom", prenom)
-.ilike("nom", nom);
+.order("prenom");
 
-
-
-if (erreurRecherche) {
-
-
-console.error(
-erreurRecherche
-);
-
-
-alert(
-"Impossible de vérifier l'inscription : " +
-erreurRecherche.message
-);
-
-
-bouton.disabled = false;
-
-bouton.textContent =
-"JE PARTICIPE";
-
-
+if(error) {
+console.error(error);
 return;
-
 }
 
+participantsGlobal = data;
 
+select.innerHTML = "";
 
-if (
-existants &&
-existants.length > 0
+data.forEach(p => {
+
+const option =
+document.createElement("option");
+
+option.value = p.id;
+
+option.textContent =
+p.prenom +
+(p.nom ? " " + p.nom : "");
+
+select.appendChild(option);
+
+});
+
+/* mémoriser participant */
+
+const memorise =
+localStorage.getItem("participantBaou");
+
+if(
+memorise &&
+data.some(p => String(p.id) === memorise)
 ) {
 
-
-alert(
-"Ce participant existe déjà. Utilise « Je suis déjà inscrit »."
-);
-
-
-bouton.disabled = false;
-
-bouton.textContent =
-"JE PARTICIPE";
-
-
-return;
+select.value = memorise;
 
 }
 
+select.addEventListener(
+"change",
+() => {
 
-
-/* CREATION */
-
-const {
-data,
-error
-} =
-
-await db
-.from("participants")
-.insert([
-{
-prenom: prenom,
-nom: nom
-}
-])
-.select(
-"id, prenom, nom"
-)
-.single();
-
-
-
-if (error) {
-
-
-console.error(error);
-
-
-alert(
-"Erreur lors de l'inscription : " +
-error.message
-);
-
-
-bouton.disabled = false;
-
-bouton.textContent =
-"JE PARTICIPE";
-
-
-return;
-
-}
-
-
-
-utilisateur = data;
-
-
-memoriserUtilisateur(
-data
-);
-
-
-afficherProfil();
-
-
-bouton.disabled = false;
-
-bouton.textContent =
-"JE PARTICIPE";
-
-
-await chargerClassement();
-
-}
-
-
-
-/* ==================================================
-   PARTICIPANT EXISTANT
-================================================== */
-
-async function choisirParticipantExistant() {
-
-
-const select =
-document.getElementById(
-"participantExistant"
-);
-
-
-const id =
-Number(
+localStorage.setItem(
+"participantBaou",
 select.value
 );
 
+actualiser();
 
-if (!id) {
-
-alert(
-"Choisis ton nom dans la liste."
-);
-
-return;
+});
 
 }
 
 
+/* COMPTEUR */
 
-const {
-data,
-error
-} =
+function afficher() {
+document.getElementById("nombre").textContent =
+nombre;
+}
 
-await db
-.from("participants")
-.select(
-"id, prenom, nom"
-)
-.eq(
-"id",
-id
-)
-.single();
+function plus() {
+nombre++;
+afficher();
+}
 
-
-
-if (error) {
-
-alert(
-"Impossible de récupérer ce participant."
-);
-
-return;
-
+function moins() {
+if(nombre > 1) {
+nombre--;
+afficher();
+}
 }
 
 
+/* DONNEES */
 
-utilisateur =
-data;
+async function chargerDonnees() {
 
-
-memoriserUtilisateur(
-data
-);
-
-
-afficherProfil();
-
-
-await chargerClassement();
-
-}
-
-
-
-/* ==================================================
-   MEMORISATION TELEPHONE
-================================================== */
-
-function memoriserUtilisateur(
-participant
-) {
-
-
-localStorage.setItem(
-
-"presidentDuBaouUtilisateur",
-
-JSON.stringify(
-participant
-)
-
-);
-
-}
-
-
-
-function recupererUtilisateurMemorise() {
-
-
-const sauvegarde =
-localStorage.getItem(
-"presidentDuBaouUtilisateur"
-);
-
-
-if (!sauvegarde) {
-
-return null;
-
-}
-
-
-try {
-
-return JSON.parse(
-sauvegarde
-);
-
-}
-
-catch {
-
-return null;
-
-}
-
-}
-
-
-
-/* ==================================================
-   AFFICHAGE PROFIL
-================================================== */
-
-function afficherProfil() {
-
-
-document
-.getElementById(
-"identification"
-)
-.classList
-.add(
-"hidden"
-);
-
-
-document
-.getElementById(
-"profil"
-)
-.classList
-.remove(
-"hidden"
-);
-
-
-document
-.getElementById(
-"tableauPersonnel"
-)
-.classList
-.remove(
-"hidden"
-);
-
-
-document
-.getElementById(
-"zoneMontees"
-)
-.classList
-.remove(
-"hidden"
-);
-
-
-document
-.getElementById(
-"nomUtilisateur"
-)
-.textContent =
-
-`${utilisateur.prenom} ${utilisateur.nom || ""}`
-.trim();
-
-}
-
-
-
-/* ==================================================
-   CHANGER UTILISATEUR
-================================================== */
-
-async function changerUtilisateur() {
-
-
-localStorage.removeItem(
-"presidentDuBaouUtilisateur"
-);
-
-
-utilisateur =
-null;
-
-
-document
-.getElementById(
-"profil"
-)
-.classList
-.add(
-"hidden"
-);
-
-
-document
-.getElementById(
-"tableauPersonnel"
-)
-.classList
-.add(
-"hidden"
-);
-
-
-document
-.getElementById(
-"zoneMontees"
-)
-.classList
-.add(
-"hidden"
-);
-
-
-document
-.getElementById(
-"identification"
-)
-.classList
-.remove(
-"hidden"
-);
-
-
-masquerCorrection();
-
-
-await chargerParticipantsExistants();
-
-}
-
-
-
-/* ==================================================
-   ENREGISTRER MONTEES
-================================================== */
-
-async function validerMontees() {
-
-
-if (
-!utilisateur ||
-!utilisateur.id
-) {
-
-alert(
-"Utilisateur non identifié."
-);
-
-return;
-
-}
-
-
-const bouton =
-document.getElementById(
-"boutonValider"
-);
-
-
-bouton.disabled =
-true;
-
-
-bouton.textContent =
-"ENREGISTREMENT...";
-
-
-
-const {
-error
-} =
-
+const {data,error} =
 await db
 .from("montees")
-.insert([
-{
-participant_id:
-utilisateur.id,
+.select("id, participant_id, nombre, created_at")
+.order("created_at", {ascending:false});
 
-nombre:
-nombre
-}
-]);
-
-
-
-if (error) {
-
-
-console.error(
-error
-);
-
-
-alert(
-"Erreur Supabase : " +
-error.message
-);
-
-
-bouton.disabled =
-false;
-
-
-bouton.textContent =
-"VALIDER MES MONTÉES";
-
-
+if(error) {
+console.error(error);
 return;
+}
+
+monteesGlobal = data || [];
+
+actualiser();
 
 }
 
 
+/* ACTUALISATION */
 
-alert(
+function actualiser() {
 
-`🔥 ${nombre} montée(s) enregistrée(s) pour ${utilisateur.prenom} !`
+if(!participantsGlobal.length) return;
 
-);
-
-
-nombre = 1;
-
-
-afficherNombre();
-
-
-bouton.disabled =
-false;
-
-
-bouton.textContent =
-"VALIDER MES MONTÉES";
-
-
-await chargerClassement();
-
-}
-
-
-
-/* ==================================================
-   CORRECTION
-================================================== */
-
-function afficherCorrection() {
-
-
-document
-.getElementById(
-"zoneCorrection"
-)
-.classList
-.remove(
-"hidden"
-);
-
-}
-
-
-
-function masquerCorrection() {
-
-
-document
-.getElementById(
-"zoneCorrection"
-)
-.classList
-.add(
-"hidden"
-);
-
-}
-
-
-
-/* ==================================================
-   CORRIGER MONTEES
-================================================== */
-
-async function corrigerMontees() {
-
-
-if (
-!utilisateur ||
-!utilisateur.id
-) {
-
-return;
-
-}
-
-
-
-const nombreARetirer =
+const participantId =
 Number(
-
-document
-.getElementById(
-"nombreCorrection"
-)
-.value
-
+document.getElementById("participant").value
 );
-
-
-
-const scoreUtilisateur =
-scoresActuels.find(
-
-participant =>
-Number(participant.id)
-===
-Number(utilisateur.id)
-
-);
-
-
-
-const totalActuel =
-scoreUtilisateur
-?
-scoreUtilisateur.total
-:
-0;
-
-
-
-if (
-nombreARetirer >
-totalActuel
-) {
-
-
-alert(
-
-`Impossible de retirer ${nombreARetirer} montée(s).
-
-Ton total actuel est de ${totalActuel}.`
-
-);
-
-
-return;
-
-}
-
-
-
-const confirmation =
-confirm(
-
-`Confirmer le retrait de ${nombreARetirer} montée(s) de ton total ?`
-
-);
-
-
-
-if (!confirmation) {
-
-return;
-
-}
-
-
-
-const bouton =
-document.getElementById(
-"boutonCorrection"
-);
-
-
-bouton.disabled =
-true;
-
-
-bouton.textContent =
-"CORRECTION...";
-
-
-
-const {
-error
-} =
-
-await db
-.from("montees")
-.insert([
-{
-participant_id:
-utilisateur.id,
-
-nombre:
--nombreARetirer
-}
-]);
-
-
-
-if (error) {
-
-
-console.error(
-error
-);
-
-
-alert(
-
-"Erreur lors de la correction : " +
-error.message
-
-);
-
-
-bouton.disabled =
-false;
-
-
-bouton.textContent =
-"CONFIRMER LA CORRECTION";
-
-
-return;
-
-}
-
-
-
-alert(
-
-`Correction effectuée : ${nombreARetirer} montée(s) retirée(s).`
-
-);
-
-
-bouton.disabled =
-false;
-
-
-bouton.textContent =
-"CONFIRMER LA CORRECTION";
-
-
-masquerCorrection();
-
-
-await chargerClassement();
-
-}
-
-
-
-/* ==================================================
-   CLASSEMENT
-================================================== */
-
-async function chargerClassement() {
-
-
-const classement =
-document.getElementById(
-"classement"
-);
-
-
-
-const {
-data: participants,
-error: erreurParticipants
-} =
-
-await db
-.from("participants")
-.select(
-"id, prenom, nom"
-);
-
-
-
-if (erreurParticipants) {
-
-
-classement.innerHTML =
-
-`<li class="error">
-Impossible de charger les participants
-</li>`;
-
-
-return;
-
-}
-
-
-
-const {
-data: montees,
-error: erreurMontees
-} =
-
-await db
-.from("montees")
-.select(
-"participant_id, nombre"
-);
-
-
-
-if (erreurMontees) {
-
-
-classement.innerHTML =
-
-`<li class="error">
-Impossible de charger les montées
-</li>`;
-
-
-return;
-
-}
-
-
-
-/* CALCUL */
 
 const scores =
-participants.map(
-participant => {
-
+participantsGlobal.map(p => {
 
 const total =
-
-montees
-
-.filter(
-montee =>
-
-Number(
-montee.participant_id
+monteesGlobal
+.filter(m =>
+Number(m.participant_id) === Number(p.id)
 )
-===
-Number(
-participant.id
-)
-
-)
-
 .reduce(
-
-(somme,montee) =>
-
-somme +
-Number(
-montee.nombre || 0
-),
-
+(s,m) =>
+s + Number(m.nombre || 0),
 0
-
 );
-
-
 
 return {
-
-id:
-participant.id,
-
-prenom:
-participant.prenom,
-
-nom:
-participant.nom,
-
-total:
-Math.max(
-0,
-total
-)
-
+id:p.id,
+prenom:p.prenom,
+nom:p.nom,
+total:total
 };
 
+});
 
-}
-);
-
-
-
-/* TRI */
-
-scores.sort(
-(a,b) => {
+scores.sort((a,b) => b.total-a.total);
 
 
-if (
-b.total !==
-a.total
-) {
+/* CLASSEMENT */
 
-return (
-b.total -
-a.total
-);
+const classement =
+document.getElementById("classement");
 
-}
+classement.innerHTML = "";
 
+scores.forEach((p,index) => {
 
-return (
-a.prenom
-.localeCompare(
-b.prenom,
-"fr"
-)
-);
+let medaille = "";
 
-}
-);
-
-
-
-scoresActuels =
-scores;
-
-
-
-/* AFFICHAGE */
-
-classement.innerHTML =
-"";
-
-
-scores.forEach(
-(participant,index) => {
-
-
-let medaille =
-"";
-
-
-if (index === 0) {
-
-medaille =
-"🥇 ";
-
-}
-
-else if (index === 1) {
-
-medaille =
-"🥈 ";
-
-}
-
-else if (index === 2) {
-
-medaille =
-"🥉 ";
-
-}
-
-
-
-const estMoi =
-
-utilisateur &&
-Number(utilisateur.id)
-===
-Number(participant.id);
-
-
+if(index===0) medaille="🥇 ";
+else if(index===1) medaille="🥈 ";
+else if(index===2) medaille="🥉 ";
 
 classement.innerHTML += `
-
-<li class="${estMoi ? "moi" : ""}">
-
+<li>
 <span>
-
-${medaille}
-
-${participant.prenom}
-
-${participant.nom || ""}
-
-${estMoi ? " • Moi" : ""}
-
+${medaille}${p.prenom}
+${p.nom ? " "+p.nom.charAt(0)+"." : ""}
 </span>
-
 
 <span class="score">
-
-${participant.total}
-
+${p.total}
 </span>
-
 </li>
-
 `;
 
-
-}
-);
-
+});
 
 
 /* TOTAL CLUB */
 
 const totalClub =
 scores.reduce(
-
-(somme,participant) =>
-
-somme +
-participant.total,
-
+(s,p) => s+p.total,
 0
-
 );
 
-
-document
-.getElementById(
-"totalClub"
-)
-.textContent =
-totalClub;
+document.getElementById("totalClub")
+.textContent = totalClub;
 
 
+/* PARTICIPANT ACTUEL */
 
-/* TABLEAU PERSONNEL */
-
-mettreAJourTableauPersonnel();
-
-}
-
-
-
-/* ==================================================
-   TABLEAU PERSONNEL
-================================================== */
-
-function mettreAJourTableauPersonnel() {
-
-
-if (
-!utilisateur ||
-!utilisateur.id
-) {
-
-return;
-
-}
-
-
-
-const index =
-scoresActuels.findIndex(
-
-participant =>
-
-Number(participant.id)
-===
-Number(utilisateur.id)
-
+const position =
+scores.findIndex(
+p => Number(p.id) === participantId
 );
-
-
-
-if (
-index === -1
-) {
-
-return;
-
-}
-
-
 
 const moi =
-scoresActuels[index];
+scores[position];
 
+if(moi) {
 
-const leader =
-scoresActuels[0];
+document.getElementById("mesMontees")
+.textContent = moi.total;
 
-
-
-/* MES MONTEES */
-
-document
-.getElementById(
-"mesMontees"
-)
+document.getElementById("monClassement")
 .textContent =
-moi.total;
+(position+1)+"e";
+
+}
 
 
+/* CETTE SEMAINE */
 
-/* RANG */
+const maintenant = new Date();
 
-const rang =
-index + 1;
+const lundi =
+new Date(maintenant);
 
+const jour =
+maintenant.getDay();
 
-document
-.getElementById(
-"monRang"
-)
-.textContent =
-rang + "e";
+const difference =
+jour === 0 ? -6 : 1-jour;
 
-
-
-/* ECART */
-
-const ecart =
-leader.total -
-moi.total;
-
-
-document
-.getElementById(
-"ecartLeader"
-)
-.textContent =
-ecart;
-
-
-
-/* MESSAGE */
-
-const message =
-document.getElementById(
-"messageLeader"
+lundi.setDate(
+maintenant.getDate()+difference
 );
 
+lundi.setHours(0,0,0,0);
 
-if (
-rang === 1
-) {
+const semaine =
+monteesGlobal
 
+.filter(m =>
+Number(m.participant_id) === participantId &&
+new Date(m.created_at) >= lundi
+)
 
-message.textContent =
-"👑 C'est toi le Président !";
+.reduce(
+(s,m) =>
+s + Number(m.nombre || 0),
+0
+);
 
+document.getElementById("maSemaine")
+.textContent = semaine;
+
+document.getElementById("semaine")
+.textContent = semaine;
 
 }
 
-else {
 
+/* ENREGISTREMENT */
 
-message.textContent =
+async function valider() {
 
-`🔥 Plus que ${ecart} montée(s) pour rejoindre le leader !`;
+const participantId =
+Number(
+document.getElementById("participant").value
+);
 
+if(!participantId) {
+alert("Choisis ton nom.");
+return;
+}
+
+const bouton =
+document.getElementById("boutonValider");
+
+bouton.disabled = true;
+bouton.textContent =
+"ENREGISTREMENT...";
+
+const {error} =
+await db
+.from("montees")
+.insert([{
+participant_id:participantId,
+nombre:nombre
+}]);
+
+if(error) {
+
+alert(
+"Erreur Supabase : "+
+error.message
+);
+
+bouton.disabled=false;
+
+bouton.textContent=
+"VALIDER MES MONTÉES";
+
+return;
+}
+
+nombre=1;
+
+afficher();
+
+bouton.disabled=false;
+
+bouton.textContent=
+"VALIDER MES MONTÉES";
+
+await chargerDonnees();
 
 }
 
+
+/* CORRECTION */
+
+async function corriger() {
+
+const participantId =
+Number(
+document.getElementById("participant").value
+);
+
+const retrait =
+prompt(
+"Combien de montées veux-tu retirer ?"
+);
+
+const valeur =
+Number(retrait);
+
+if(!valeur || valeur<=0) return;
+
+if(
+!confirm(
+"Retirer "+valeur+
+" montée(s) de ton total ?"
+)
+) return;
+
+const {error} =
+await db
+.from("montees")
+.insert([{
+participant_id:participantId,
+nombre:-valeur
+}]);
+
+if(error) {
+
+alert(
+"Erreur : "+error.message
+);
+
+return;
+}
+
+await chargerDonnees();
+
 }
 
 
+/* COMPTE À REBOURS */
 
-/* ==================================================
-   DEMARRAGE
-================================================== */
+function actualiserCountdown() {
+
+/*
+2e tour présidentielle
+Dimanche 2 mai 2027
+20h00 heure française
+*/
+
+const fin =
+new Date("2027-05-02T20:00:00+02:00");
+
+const maintenant =
+new Date();
+
+let difference =
+fin-maintenant;
+
+if(difference<=0) {
+
+document.getElementById("countdown")
+.textContent =
+"🏁 CHALLENGE TERMINÉ";
+
+return;
+
+}
+
+const jours =
+Math.floor(
+difference/(1000*60*60*24)
+);
+
+difference -=
+jours*1000*60*60*24;
+
+const heures =
+Math.floor(
+difference/(1000*60*60)
+);
+
+difference -=
+heures*1000*60*60;
+
+const minutes =
+Math.floor(
+difference/(1000*60)
+);
+
+const secondes =
+Math.floor(
+(difference%(1000*60))/1000
+);
+
+document.getElementById("countdown")
+.textContent =
+jours+"j "+
+String(heures).padStart(2,"0")+"h "+
+String(minutes).padStart(2,"0")+"m "+
+String(secondes).padStart(2,"0")+"s";
+
+}
+
+
+/* DEMARRAGE */
 
 async function demarrer() {
 
+await chargerParticipants();
 
-utilisateur =
-recupererUtilisateurMemorise();
+await chargerDonnees();
 
+actualiserCountdown();
 
-await chargerClassement();
-
-
-
-if (
-utilisateur &&
-utilisateur.id
-) {
-
-
-afficherProfil();
-
-
-mettreAJourTableauPersonnel();
-
-
-}
-
-else {
-
-
-document
-.getElementById(
-"identification"
-)
-.classList
-.remove(
-"hidden"
+setInterval(
+actualiserCountdown,
+1000
 );
 
-
-await chargerParticipantsExistants();
-
-
 }
-
-}
-
-
 
 demarrer();
 
-
 </script>
 
-
 </body>
-
 </html>
