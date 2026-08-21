@@ -304,7 +304,35 @@ supabase.createClient(
 /* ===========================
    COMPTEUR
 =========================== */
+async function chargerParticipants() {
 
+  const select = document.getElementById("participant");
+
+  const { data: participants, error } = await db
+    .from("participants")
+    .select("id, prenom")
+    .order("prenom", { ascending: true });
+
+  if (error) {
+    console.error("Erreur chargement participants :", error);
+    select.innerHTML =
+      '<option value="">Erreur de chargement</option>';
+    return;
+  }
+
+  select.innerHTML = "";
+
+  participants.forEach(participant => {
+
+    const option = document.createElement("option");
+
+    option.value = participant.id;
+    option.textContent = participant.prenom;
+
+    select.appendChild(option);
+
+  });
+}
 let nombre = 1;
 
 
@@ -701,7 +729,8 @@ async function valider() {
    DEMARRAGE
 =========================== */
 
-chargerClassement();
+chargerParticipants();
+chargerClassement();;
 
 
 </script>
