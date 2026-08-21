@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,10 @@
 <title>Président du Baou</title>
 
 <style>
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -24,7 +28,9 @@ body {
   padding: 30px 20px;
 }
 
-.header .crown { font-size: 42px; }
+.header .crown {
+  font-size: 42px;
+}
 
 .header h1 {
   margin: 5px 0;
@@ -103,6 +109,15 @@ select {
   cursor: pointer;
 }
 
+.validate:hover {
+  opacity: .9;
+}
+
+.validate:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
 .ranking {
   list-style: none;
   padding: 0;
@@ -116,6 +131,10 @@ select {
   padding: 15px 5px;
   border-bottom: 1px solid #eee;
   font-size: 17px;
+}
+
+.ranking li:last-child {
+  border-bottom: none;
 }
 
 .score {
@@ -146,28 +165,42 @@ select {
   color: #c00;
   line-height: 1.5;
 }
+
 </style>
+
 </head>
 
 <body>
 
+
 <header class="header">
-  <div class="crown">👑</div>
-  <h1>Le Président du Baou</h1>
-  <p>Challenge Team Trail Loisir</p>
+
+<div class="crown">👑</div>
+
+<h1>Le Président du Baou</h1>
+
+<p>Challenge Team Trail Loisir</p>
+
 </header>
+
 
 <main class="container">
 
+
 <section class="card">
+
 <h2>Qui es-tu ?</h2>
 
 <select id="participant">
-  <option value="1">Jean Jacques</option>
-  <option value="2">Gérard</option>
-  <option value="3">Baptiste</option>
+
+<option value="1">Jean Jacques</option>
+<option value="2">Gérard</option>
+<option value="3">Baptiste</option>
+
 </select>
+
 </section>
+
 
 
 <section class="card">
@@ -175,270 +208,509 @@ select {
 <h2>Combien de montées aujourd'hui ?</h2>
 
 <div class="counter">
+
 <button onclick="moins()">−</button>
+
 <div id="nombre">1</div>
+
 <button onclick="plus()">+</button>
+
 </div>
 
-<button class="validate" id="boutonValider" onclick="valider()">
+
+<button
+class="validate"
+id="boutonValider"
+onclick="valider()">
+
 VALIDER MES MONTÉES
+
 </button>
 
 </section>
+
 
 
 <section class="card">
 
 <h2>🏆 Classement</h2>
 
-<ul class="ranking" id="classement">
+<ul
+class="ranking"
+id="classement">
+
 <li>Chargement du classement...</li>
+
 </ul>
 
 </section>
 
 
+
 <section class="card total">
 
-<div>Total des montées du club</div>
+<div>
+Total des montées du club
+</div>
 
-<div class="total-number" id="totalClub">0</div>
+<div
+class="total-number"
+id="totalClub">
 
-<div>🔥 Ça commence à chauffer dans le Baou !</div>
+0
+
+</div>
+
+<div>
+🔥 Ça commence à chauffer dans le Baou !
+</div>
 
 </section>
 
+
 <div class="small">
+
 Président du Baou • Team Trail Loisir
+
 </div>
+
 
 </main>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
+
+
+/* ===========================
+   CONNEXION SUPABASE
+=========================== */
 
 const SUPABASE_URL =
 "https://fcizyahrzowsrorxuapv.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_2K01tIDQQiEgBJR3b3c1nw_NJEtXJ8r";
 
-const db =
-supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+const db =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+
+/* ===========================
+   COMPTEUR
+=========================== */
 
 let nombre = 1;
 
 
 function afficher() {
-  document.getElementById("nombre").textContent = nombre;
+
+  document
+    .getElementById("nombre")
+    .textContent = nombre;
+
 }
 
 
 function plus() {
+
   nombre++;
+
   afficher();
+
 }
 
 
 function moins() {
+
   if (nombre > 1) {
+
     nombre--;
+
     afficher();
+
   }
+
 }
 
 
 
+/* ===========================
+   CHARGEMENT DU CLASSEMENT
+=========================== */
+
 async function chargerClassement() {
+
 
   const classement =
     document.getElementById("classement");
+
 
   classement.innerHTML =
     "<li>Chargement du classement...</li>";
 
 
+
+  /* ---- PARTICIPANTS ---- */
+
   const {
     data: participants,
     error: erreurParticipants
-  } = await db
+  } =
+    await db
       .from("participants")
-      .select("id, prénom");
+      .select("id, prenom");
+
 
 
   if (erreurParticipants) {
 
-    console.error(erreurParticipants);
 
-    classement.innerHTML =
-      `<li class="erreur">
+    console.error(
+      "Erreur participants :",
+      erreurParticipants
+    );
+
+
+    classement.innerHTML = `
+
+      <li class="erreur">
+
       Erreur participants :<br>
-      ${erreurParticipants.message}<br>
-      Code : ${erreurParticipants.code || "aucun"}
-      </li>`;
+
+      ${erreurParticipants.message}
+
+      <br>
+
+      Code :
+      ${erreurParticipants.code || "aucun"}
+
+      </li>
+
+    `;
+
 
     return;
+
   }
 
 
+
+  /* ---- MONTEES ---- */
 
   const {
     data: montees,
     error: erreurMontees
-  } = await db
+  } =
+    await db
       .from("montees")
       .select("participant_id, nombre");
 
 
+
   if (erreurMontees) {
 
-    console.error(erreurMontees);
 
-    classement.innerHTML =
-      `<li class="erreur">
+    console.error(
+      "Erreur montées :",
+      erreurMontees
+    );
+
+
+    classement.innerHTML = `
+
+      <li class="erreur">
+
       Erreur montées :<br>
-      ${erreurMontees.message}<br>
-      Code : ${erreurMontees.code || "aucun"}
-      </li>`;
+
+      ${erreurMontees.message}
+
+      <br>
+
+      Code :
+      ${erreurMontees.code || "aucun"}
+
+      </li>
+
+    `;
+
 
     return;
+
   }
 
 
 
-  const scores = participants.map(p => {
-
-    const total = montees
-      .filter(m =>
-        Number(m.participant_id) === Number(p.id)
-      )
-      .reduce(
-        (somme, m) =>
-          somme + Number(m.nombre || 0),
-        0
-      );
-
-    return {
-      prenom: p["prénom"],
-      total: total
-    };
-
-  });
+  /* ===========================
+     CALCUL DES SCORES
+  =========================== */
 
 
+  const scores =
+    participants.map(
+      participant => {
 
-  scores.sort((a,b) => b.total - a.total);
+
+        const total =
+          montees
+
+            .filter(
+              montee =>
+                Number(montee.participant_id)
+                ===
+                Number(participant.id)
+            )
+
+            .reduce(
+              (somme, montee) =>
+                somme +
+                Number(montee.nombre || 0),
+
+              0
+            );
+
+
+        return {
+
+          prenom:
+            participant.prenom,
+
+          total:
+            total
+
+        };
+
+
+      }
+    );
+
+
+
+  /* Classement décroissant */
+
+  scores.sort(
+    (a, b) =>
+      b.total - a.total
+  );
+
+
+
+  /* ===========================
+     AFFICHAGE CLASSEMENT
+  =========================== */
 
 
   classement.innerHTML = "";
 
 
-  scores.forEach((p,index) => {
 
-    let medaille = "";
-
-    if (index === 0) medaille = "🥇 ";
-    else if (index === 1) medaille = "🥈 ";
-    else if (index === 2) medaille = "🥉 ";
+  scores.forEach(
+    (participant, index) => {
 
 
-    classement.innerHTML += `
-      <li>
-        <span>${medaille}${p.prenom}</span>
-        <span class="score">${p.total}</span>
-      </li>
-    `;
+      let medaille = "";
 
-  });
 
+      if (index === 0) {
+
+        medaille = "🥇 ";
+
+      }
+
+      else if (index === 1) {
+
+        medaille = "🥈 ";
+
+      }
+
+      else if (index === 2) {
+
+        medaille = "🥉 ";
+
+      }
+
+
+
+      classement.innerHTML += `
+
+        <li>
+
+          <span>
+            ${medaille}
+            ${participant.prenom}
+          </span>
+
+          <span class="score">
+            ${participant.total}
+          </span>
+
+        </li>
+
+      `;
+
+
+    }
+  );
+
+
+
+  /* ===========================
+     TOTAL CLUB
+  =========================== */
 
 
   const totalClub =
     scores.reduce(
-      (somme,p) => somme + p.total,
+      (somme, participant) =>
+        somme + participant.total,
+
       0
     );
 
 
-  document.getElementById("totalClub")
-    .textContent = totalClub;
+  document
+    .getElementById("totalClub")
+    .textContent =
+      totalClub;
+
 
 }
 
 
 
+/* ===========================
+   ENREGISTRER DES MONTEES
+=========================== */
+
 async function valider() {
+
 
   const participantId =
     Number(
-      document.getElementById("participant").value
+      document
+        .getElementById("participant")
+        .value
     );
 
 
   const bouton =
-    document.getElementById("boutonValider");
+    document
+      .getElementById("boutonValider");
+
 
 
   bouton.disabled = true;
-  bouton.textContent = "ENREGISTREMENT...";
+
+  bouton.textContent =
+    "ENREGISTREMENT...";
+
 
 
   const {
     error
-  } = await db
+  } =
+    await db
       .from("montees")
-      .insert([
-        {
-          participant_id: participantId,
-          nombre: nombre
-        }
-      ]);
+      .insert(
+        [
+          {
+
+            participant_id:
+              participantId,
+
+            nombre:
+              nombre
+
+          }
+        ]
+      );
+
 
 
   if (error) {
 
-    console.error(error);
+
+    console.error(
+      "Erreur enregistrement :",
+      error
+    );
+
 
     alert(
       "Erreur Supabase : " +
       error.message
     );
 
+
     bouton.disabled = false;
+
     bouton.textContent =
       "VALIDER MES MONTÉES";
 
+
     return;
+
   }
 
 
+
+  /* Confirmation */
+
   alert(
+
     "🔥 " +
+
     nombre +
+
     " montée(s) enregistrée(s) !"
+
   );
 
 
+
+  /* Retour compteur à 1 */
+
   nombre = 1;
+
   afficher();
 
 
+
   bouton.disabled = false;
+
   bouton.textContent =
     "VALIDER MES MONTÉES";
 
 
+
+  /* Actualisation immédiate */
+
   await chargerClassement();
+
 
 }
 
 
+
+/* ===========================
+   DEMARRAGE
+=========================== */
+
 chargerClassement();
+
 
 </script>
 
+
 </body>
+
 </html>
