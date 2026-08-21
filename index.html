@@ -1,283 +1,349 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111111">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
 
-  <title>Président du Baou</title>
+<title>Président du Baou</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f4f4;
-      color: #171717;
-    }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f4f4;
+  color: #171717;
+}
 
-    .header {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-    }
+.header {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
 
-    .header .crown {
-      font-size: 42px;
-    }
+.header .crown { font-size: 42px; }
 
-    .header h1 {
-      margin: 5px 0;
-      font-size: 28px;
-      text-transform: uppercase;
-    }
+.header h1 {
+  margin: 5px 0;
+  font-size: 28px;
+  text-transform: uppercase;
+}
 
-    .header p {
-      margin: 5px 0 0;
-      opacity: 0.75;
-    }
+.header p {
+  margin: 5px 0 0;
+  opacity: .75;
+}
 
-    .container {
-      max-width: 600px;
-      margin: auto;
-      padding: 20px;
-    }
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
 
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-    }
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
 
-    h2 {
-      margin-top: 0;
-      font-size: 20px;
-    }
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
 
-    select {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 17px;
-      background: white;
-    }
+select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 17px;
+  background: white;
+}
 
-    .counter {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 25px;
-      margin: 25px 0;
-    }
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  margin: 25px 0;
+}
 
-    .counter button {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      border: none;
-      background: #222;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-    }
+.counter button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  background: #222;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
 
-    #nombre {
-      font-size: 42px;
-      font-weight: bold;
-      min-width: 55px;
-      text-align: center;
-    }
+#nombre {
+  font-size: 42px;
+  font-weight: bold;
+  min-width: 55px;
+  text-align: center;
+}
 
-    .validate {
-      width: 100%;
-      padding: 17px;
-      border: none;
-      border-radius: 12px;
-      background: #d71920;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.validate {
+  width: 100%;
+  padding: 17px;
+  border: none;
+  border-radius: 12px;
+  background: #d71920;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .validate:hover {
-      opacity: .9;
-    }
+.ranking {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .ranking {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+.ranking li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5px;
+  border-bottom: 1px solid #eee;
+  font-size: 17px;
+}
 
-    .ranking li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 5px;
-      border-bottom: 1px solid #eee;
-      font-size: 17px;
-    }
+.score {
+  font-weight: bold;
+  font-size: 20px;
+}
 
-    .ranking li:last-child {
-      border-bottom: none;
-    }
+.total {
+  background: #111;
+  color: white;
+  text-align: center;
+}
 
-    .score {
-      font-weight: bold;
-      font-size: 20px;
-    }
+.total-number {
+  font-size: 44px;
+  font-weight: bold;
+  margin: 5px;
+}
 
-    .total {
-      background: #111;
-      color: white;
-      text-align: center;
-    }
+.small {
+  color: #777;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 20px;
+}
 
-    .total-number {
-      font-size: 44px;
-      font-weight: bold;
-      margin: 5px;
-    }
-
-    .small {
-      color: #777;
-      font-size: 13px;
-      text-align: center;
-      margin-top: 20px;
-    }
-  </style>
+.erreur {
+  color: #c00;
+  line-height: 1.5;
+}
+</style>
 </head>
 
 <body>
 
-  <header class="header">
-    <div class="crown">👑</div>
-    <h1>Le Président du Baou</h1>
-    <p>Challenge Team Trail Loisir</p>
-  </header>
+<header class="header">
+  <div class="crown">👑</div>
+  <h1>Le Président du Baou</h1>
+  <p>Challenge Team Trail Loisir</p>
+</header>
 
-  <main class="container">
+<main class="container">
 
-    <section class="card">
-      <h2>Qui es-tu ?</h2>
+<section class="card">
+<h2>Qui es-tu ?</h2>
 
-      <select id="participant">
-        <option value="1">Jean Jacques</option>
-        <option value="2">Gérard</option>
-        <option value="3">Baptiste</option>
-      </select>
-    </section>
+<select id="participant">
+  <option value="1">Jean Jacques</option>
+  <option value="2">Gérard</option>
+  <option value="3">Baptiste</option>
+</select>
+</section>
 
-    <section class="card">
 
-      <h2>Combien de montées aujourd'hui ?</h2>
+<section class="card">
 
-      <div class="counter">
+<h2>Combien de montées aujourd'hui ?</h2>
 
-        <button onclick="moins()">−</button>
+<div class="counter">
+<button onclick="moins()">−</button>
+<div id="nombre">1</div>
+<button onclick="plus()">+</button>
+</div>
 
-        <div id="nombre">1</div>
+<button class="validate" id="boutonValider" onclick="valider()">
+VALIDER MES MONTÉES
+</button>
 
-        <button onclick="plus()">+</button>
+</section>
 
-      </div>
 
-      <button class="validate" onclick="valider()">
-        VALIDER MES MONTÉES
-      </button>
+<section class="card">
 
-    </section>
+<h2>🏆 Classement</h2>
 
-    <section class="card">
-
-      <h2>🏆 Classement</h2>
 <ul class="ranking" id="classement">
-  <li>Chargement du classement...</li>
+<li>Chargement du classement...</li>
 </ul>
-     
 
-    </section>
+</section>
 
-    <section class="card total">
 
-      <div>Total des montées du club</div>
+<section class="card total">
+
+<div>Total des montées du club</div>
+
 <div class="total-number" id="totalClub">0</div>
-      
-      <div>🔥 Ça commence à chauffer dans le Baou !</div>
 
-    </section>
+<div>🔥 Ça commence à chauffer dans le Baou !</div>
 
-    <div class="small">
-      Président du Baou • Team Trail Loisir
-    </div>
+</section>
 
-  </main>
+<div class="small">
+Président du Baou • Team Trail Loisir
+</div>
+
+</main>
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-const SUPABASE_URL = "https://fcizyahrzowsrorxuapv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_2K01tIDQQiEgBJR3b3c1nw_NJEtXJ8r";
 
-const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    async function chargerClassement() {
+<script>
 
-  const { data: participants, error: erreurParticipants } =
-    await db
+const SUPABASE_URL =
+"https://fcizyahrzowsrorxuapv.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_2K01tIDQQiEgBJR3b3c1nw_NJEtXJ8r";
+
+const db =
+supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+
+let nombre = 1;
+
+
+function afficher() {
+  document.getElementById("nombre").textContent = nombre;
+}
+
+
+function plus() {
+  nombre++;
+  afficher();
+}
+
+
+function moins() {
+  if (nombre > 1) {
+    nombre--;
+    afficher();
+  }
+}
+
+
+
+async function chargerClassement() {
+
+  const classement =
+    document.getElementById("classement");
+
+  classement.innerHTML =
+    "<li>Chargement du classement...</li>";
+
+
+  const {
+    data: participants,
+    error: erreurParticipants
+  } = await db
       .from("participants")
-      .select("id, prenom");
+      .select("id, prénom");
+
 
   if (erreurParticipants) {
+
     console.error(erreurParticipants);
-    document.getElementById("classement").innerHTML =
-      "<li>Impossible de charger les participants</li>";
+
+    classement.innerHTML =
+      `<li class="erreur">
+      Erreur participants :<br>
+      ${erreurParticipants.message}<br>
+      Code : ${erreurParticipants.code || "aucun"}
+      </li>`;
+
     return;
   }
 
-  const { data: montees, error: erreurMontees } =
-    await db
+
+
+  const {
+    data: montees,
+    error: erreurMontees
+  } = await db
       .from("montees")
       .select("participant_id, nombre");
 
+
   if (erreurMontees) {
+
     console.error(erreurMontees);
-    document.getElementById("classement").innerHTML =
-      "<li>Impossible de charger les montées</li>";
+
+    classement.innerHTML =
+      `<li class="erreur">
+      Erreur montées :<br>
+      ${erreurMontees.message}<br>
+      Code : ${erreurMontees.code || "aucun"}
+      </li>`;
+
     return;
   }
+
+
 
   const scores = participants.map(p => {
 
     const total = montees
-      .filter(m => m.participant_id === p.id)
-      .reduce((somme, m) => somme + Number(m.nombre), 0);
+      .filter(m =>
+        Number(m.participant_id) === Number(p.id)
+      )
+      .reduce(
+        (somme, m) =>
+          somme + Number(m.nombre || 0),
+        0
+      );
 
     return {
-      prenom: p.prenom,
+      prenom: p["prénom"],
       total: total
     };
 
   });
 
-  scores.sort((a, b) => b.total - a.total);
 
-  const classement = document.getElementById("classement");
+
+  scores.sort((a,b) => b.total - a.total);
+
 
   classement.innerHTML = "";
 
-  scores.forEach((p, index) => {
+
+  scores.forEach((p,index) => {
 
     let medaille = "";
 
     if (index === 0) medaille = "🥇 ";
-    if (index === 1) medaille = "🥈 ";
-    if (index === 2) medaille = "🥉 ";
+    else if (index === 1) medaille = "🥈 ";
+    else if (index === 2) medaille = "🥉 ";
+
 
     classement.innerHTML += `
       <li>
@@ -288,49 +354,91 @@ const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   });
 
-  const totalClub =
-    scores.reduce((somme, p) => somme + p.total, 0);
 
-  document.getElementById("totalClub").textContent = totalClub;
+
+  const totalClub =
+    scores.reduce(
+      (somme,p) => somme + p.total,
+      0
+    );
+
+
+  document.getElementById("totalClub")
+    .textContent = totalClub;
+
 }
 
+
+
+async function valider() {
+
+  const participantId =
+    Number(
+      document.getElementById("participant").value
+    );
+
+
+  const bouton =
+    document.getElementById("boutonValider");
+
+
+  bouton.disabled = true;
+  bouton.textContent = "ENREGISTREMENT...";
+
+
+  const {
+    error
+  } = await db
+      .from("montees")
+      .insert([
+        {
+          participant_id: participantId,
+          nombre: nombre
+        }
+      ]);
+
+
+  if (error) {
+
+    console.error(error);
+
+    alert(
+      "Erreur Supabase : " +
+      error.message
+    );
+
+    bouton.disabled = false;
+    bouton.textContent =
+      "VALIDER MES MONTÉES";
+
+    return;
+  }
+
+
+  alert(
+    "🔥 " +
+    nombre +
+    " montée(s) enregistrée(s) !"
+  );
+
+
+  nombre = 1;
+  afficher();
+
+
+  bouton.disabled = false;
+  bouton.textContent =
+    "VALIDER MES MONTÉES";
+
+
+  await chargerClassement();
+
+}
+
+
 chargerClassement();
-    let nombre = 1;
 
-    function afficher() {
-      document.getElementById("nombre").textContent = nombre;
-    }
-
-    function plus() {
-      nombre++;
-      afficher();
-    }
-
-    function moins() {
-      if (nombre > 1) {
-        nombre--;
-        afficher();
-      }
-    }
-
-    function valider() {
-
-      const participant =
-        document.getElementById("participant")
-        .options[
-          document.getElementById("participant").selectedIndex
-        ].text;
-
-      alert(
-        participant +
-        " : " +
-        nombre +
-        " montée(s) sélectionnée(s)."
-      );
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
