@@ -199,34 +199,18 @@
     <section class="card">
 
       <h2>🏆 Classement</h2>
-
-      <ul class="ranking">
-
-        <li>
-          <span>🥇 Jean Jacques</span>
-          <span class="score">4</span>
-        </li>
-
-        <li>
-          <span>🥈 Baptiste</span>
-          <span class="score">3</span>
-        </li>
-
-        <li>
-          <span>🥉 Gérard</span>
-          <span class="score">2</span>
-        </li>
-
-      </ul>
+<ul class="ranking" id="classement">
+  <li>Chargement du classement...</li>
+</ul>
+     
 
     </section>
 
     <section class="card total">
 
       <div>Total des montées du club</div>
-
-      <div class="total-number">9</div>
-
+<div class="total-number" id="totalClub">0</div>
+      
       <div>🔥 Ça commence à chauffer dans le Baou !</div>
 
     </section>
@@ -236,9 +220,81 @@
     </div>
 
   </main>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+const SUPABASE_URL = "https://fcizyahrzowsrorxuapv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_2K01tIDQQiEgBJR3b3c1nw_NJEtXJ8r";
 
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    async function chargerClassement() {
+
+  const { data: participants, error: erreurParticipants } =
+    await db
+      .from("participants")
+      .select("id, prenom");
+
+  if (erreurParticipants) {
+    console.error(erreurParticipants);
+    document.getElementById("classement").innerHTML =
+      "<li>Impossible de charger les participants</li>";
+    return;
+  }
+
+  const { data: montees, error: erreurMontees } =
+    await db
+      .from("montees")
+      .select("participant_id, nombre");
+
+  if (erreurMontees) {
+    console.error(erreurMontees);
+    document.getElementById("classement").innerHTML =
+      "<li>Impossible de charger les montées</li>";
+    return;
+  }
+
+  const scores = participants.map(p => {
+
+    const total = montees
+      .filter(m => m.participant_id === p.id)
+      .reduce((somme, m) => somme + Number(m.nombre), 0);
+
+    return {
+      prenom: p.prenom,
+      total: total
+    };
+
+  });
+
+  scores.sort((a, b) => b.total - a.total);
+
+  const classement = document.getElementById("classement");
+
+  classement.innerHTML = "";
+
+  scores.forEach((p, index) => {
+
+    let medaille = "";
+
+    if (index === 0) medaille = "🥇 ";
+    if (index === 1) medaille = "🥈 ";
+    if (index === 2) medaille = "🥉 ";
+
+    classement.innerHTML += `
+      <li>
+        <span>${medaille}${p.prenom}</span>
+        <span class="score">${p.total}</span>
+      </li>
+    `;
+
+  });
+
+  const totalClub =
+    scores.reduce((somme, p) => somme + p.total, 0);
+
+  document.getElementById("totalClub").textContent = totalClub;
+}
+
+chargerClassement();
     let nombre = 1;
 
     function afficher() {
