@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +8,7 @@
 <title>Président du Baou</title>
 
 <style>
-
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -25,12 +21,10 @@ body {
   background: #111;
   color: white;
   text-align: center;
-  padding: 30px 20px;
+  padding: 28px 20px;
 }
 
-.header .crown {
-  font-size: 42px;
-}
+.crown { font-size: 42px; }
 
 .header h1 {
   margin: 5px 0;
@@ -59,63 +53,93 @@ body {
 
 h2 {
   margin-top: 0;
-  font-size: 20px;
+  font-size: 21px;
 }
 
-select {
+input, select {
   width: 100%;
   padding: 14px;
   border-radius: 10px;
   border: 1px solid #ccc;
   font-size: 17px;
   background: white;
+  margin-bottom: 12px;
+}
+
+.btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-red {
+  background: #d71920;
+  color: white;
+}
+
+.btn-dark {
+  background: #222;
+  color: white;
+}
+
+.btn-light {
+  background: #eee;
+  color: #222;
+  margin-top: 10px;
+}
+
+.btn:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcome-name {
+  font-size: 27px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.change-user {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  color: #777;
+  cursor: pointer;
+  margin-top: 8px;
 }
 
 .counter {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  gap: 28px;
   margin: 25px 0;
 }
 
 .counter button {
-  width: 55px;
-  height: 55px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   border: none;
   background: #222;
   color: white;
-  font-size: 30px;
+  font-size: 31px;
   cursor: pointer;
 }
 
 #nombre {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: bold;
   min-width: 55px;
   text-align: center;
-}
-
-.validate {
-  width: 100%;
-  padding: 17px;
-  border: none;
-  border-radius: 12px;
-  background: #d71920;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.validate:hover {
-  opacity: .9;
-}
-
-.validate:disabled {
-  opacity: .6;
-  cursor: wait;
 }
 
 .ranking {
@@ -138,8 +162,8 @@ select {
 }
 
 .score {
-  font-weight: bold;
   font-size: 20px;
+  font-weight: bold;
 }
 
 .total {
@@ -158,78 +182,128 @@ select {
   color: #777;
   font-size: 13px;
   text-align: center;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
-.erreur {
+.info {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.error {
   color: #c00;
-  line-height: 1.5;
 }
 
+.hidden {
+  display: none;
+}
 </style>
-
 </head>
-
 
 <body>
 
-
 <header class="header">
-
   <div class="crown">👑</div>
-
   <h1>Le Président du Baou</h1>
-
   <p>Challenge Team Trail Loisir</p>
-
 </header>
-
 
 <main class="container">
 
+<!-- PREMIERE VISITE -->
 
-<!-- PARTICIPANT -->
+<section id="identification" class="card hidden">
 
-<section class="card">
+  <h2>Bienvenue 👋</h2>
 
-  <h2>Qui es-tu ?</h2>
+  <p class="info">
+    Pour participer au challenge, identifie-toi une seule fois.
+    Ton téléphone se souviendra ensuite de toi.
+  </p>
 
-  <select id="participant">
-    <option value="">Chargement des participants...</option>
+  <h3>Je participe pour la première fois</h3>
+
+  <input
+    type="text"
+    id="nouveauPrenom"
+    placeholder="Prénom"
+    autocomplete="given-name">
+
+  <input
+    type="text"
+    id="nouveauNom"
+    placeholder="Nom"
+    autocomplete="family-name">
+
+  <button
+    class="btn btn-red"
+    id="boutonInscription"
+    onclick="inscrireParticipant()">
+    JE PARTICIPE
+  </button>
+
+  <hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
+
+  <h3>Je suis déjà inscrit</h3>
+
+  <select id="participantExistant">
+    <option value="">Chargement...</option>
   </select>
+
+  <button
+    class="btn btn-dark"
+    onclick="choisirParticipantExistant()">
+    C'EST MOI
+  </button>
 
 </section>
 
 
+<!-- UTILISATEUR RECONNU -->
 
-<!-- COMPTEUR -->
+<section id="profil" class="card welcome hidden">
 
-<section class="card">
+  <div>👋 Salut</div>
+
+  <div
+    class="welcome-name"
+    id="nomUtilisateur">
+  </div>
+
+  <button
+    class="change-user"
+    onclick="changerUtilisateur()">
+    Ce n'est pas moi
+  </button>
+
+</section>
+
+
+<!-- SAISIE MONTEES -->
+
+<section id="zoneMontees" class="card hidden">
 
   <h2>Combien de montées aujourd'hui ?</h2>
 
   <div class="counter">
 
-    <button type="button" onclick="moins()">−</button>
+    <button onclick="moins()">−</button>
 
     <div id="nombre">1</div>
 
-    <button type="button" onclick="plus()">+</button>
+    <button onclick="plus()">+</button>
 
   </div>
 
-
   <button
-    class="validate"
+    class="btn btn-red"
     id="boutonValider"
-    onclick="valider()">
-
+    onclick="validerMontees()">
     VALIDER MES MONTÉES
-
   </button>
 
 </section>
-
 
 
 <!-- CLASSEMENT -->
@@ -238,25 +312,18 @@ select {
 
   <h2>🏆 Classement</h2>
 
-  <ul
-    class="ranking"
-    id="classement">
-
-    <li>Chargement du classement...</li>
-
+  <ul class="ranking" id="classement">
+    <li>Chargement...</li>
   </ul>
 
 </section>
 
 
-
-<!-- TOTAL CLUB -->
+<!-- TOTAL -->
 
 <section class="card total">
 
-  <div>
-    Total des montées du club
-  </div>
+  <div>Total des montées du club</div>
 
   <div
     class="total-number"
@@ -270,35 +337,26 @@ select {
 
 </section>
 
-
 <div class="small">
   Président du Baou • Team Trail Loisir
 </div>
 
-
 </main>
 
 
-
-<!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
-
-/* ==================================================
-   CONNEXION SUPABASE
-================================================== */
+/* ==============================================
+   SUPABASE
+============================================== */
 
 const SUPABASE_URL =
   "https://fcizyahrzowsrorxuapv.supabase.co";
 
-
 const SUPABASE_KEY =
   "sb_publishable_2K01tIDQQiEgBJR3b3c1nw_NJEtXJ8r";
-
 
 const db =
   supabase.createClient(
@@ -307,155 +365,404 @@ const db =
   );
 
 
+/* ==============================================
+   VARIABLES
+============================================== */
 
-/* ==================================================
-   CHARGEMENT AUTOMATIQUE DES PARTICIPANTS
-================================================== */
+let nombre = 1;
+let utilisateur = null;
 
-async function chargerParticipants() {
+
+/* ==============================================
+   COMPTEUR
+============================================== */
+
+function afficherNombre() {
+  document.getElementById("nombre").textContent = nombre;
+}
+
+function plus() {
+  nombre++;
+  afficherNombre();
+}
+
+function moins() {
+  if (nombre > 1) {
+    nombre--;
+    afficherNombre();
+  }
+}
+
+
+/* ==============================================
+   LISTE PARTICIPANTS EXISTANTS
+============================================== */
+
+async function chargerParticipantsExistants() {
 
   const select =
-    document.getElementById("participant");
+    document.getElementById("participantExistant");
 
-
-  select.innerHTML =
-    '<option value="">Chargement des participants...</option>';
-
-
-  const {
-    data: participants,
-    error
-  } =
+  const { data, error } =
     await db
       .from("participants")
-      .select("id, prenom");
+      .select("id, prenom, nom");
+
+  if (error) {
+    console.error(error);
+    select.innerHTML =
+      '<option value="">Erreur de chargement</option>';
+    return;
+  }
+
+  data.sort((a,b) =>
+    `${a.prenom} ${a.nom || ""}`.localeCompare(
+      `${b.prenom} ${b.nom || ""}`,
+      "fr"
+    )
+  );
+
+  select.innerHTML =
+    '<option value="">Choisis ton nom...</option>';
+
+  data.forEach(p => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = p.id;
+
+    option.textContent =
+      `${p.prenom} ${p.nom || ""}`.trim();
+
+    select.appendChild(option);
+
+  });
+}
+
+
+/* ==============================================
+   INSCRIPTION NOUVEAU PARTICIPANT
+============================================== */
+
+async function inscrireParticipant() {
+
+  const prenom =
+    document
+      .getElementById("nouveauPrenom")
+      .value
+      .trim();
+
+  const nom =
+    document
+      .getElementById("nouveauNom")
+      .value
+      .trim();
+
+  if (!prenom || !nom) {
+    alert("Indique ton prénom et ton nom.");
+    return;
+  }
+
+  const bouton =
+    document.getElementById("boutonInscription");
+
+  bouton.disabled = true;
+  bouton.textContent = "INSCRIPTION...";
+
+
+  /* VERIFICATION DOUBLON */
+
+  const { data: existants, error: erreurRecherche } =
+    await db
+      .from("participants")
+      .select("id, prenom, nom")
+      .ilike("prenom", prenom)
+      .ilike("nom", nom);
+
+  if (erreurRecherche) {
+
+    console.error(erreurRecherche);
+
+    alert(
+      "Impossible de vérifier l'inscription : " +
+      erreurRecherche.message
+    );
+
+    bouton.disabled = false;
+    bouton.textContent = "JE PARTICIPE";
+    return;
+  }
+
+
+  if (existants && existants.length > 0) {
+
+    alert(
+      "Ce participant existe déjà. Utilise « Je suis déjà inscrit »."
+    );
+
+    bouton.disabled = false;
+    bouton.textContent = "JE PARTICIPE";
+    return;
+  }
+
+
+  /* CREATION */
+
+  const { data, error } =
+    await db
+      .from("participants")
+      .insert([
+        {
+          prenom: prenom,
+          nom: nom
+        }
+      ])
+      .select("id, prenom, nom")
+      .single();
 
 
   if (error) {
 
-    console.error(
-      "Erreur chargement participants :",
-      error
+    console.error(error);
+
+    alert(
+      "Erreur lors de l'inscription : " +
+      error.message
     );
 
-
-    select.innerHTML =
-      '<option value="">Erreur de chargement</option>';
-
-
+    bouton.disabled = false;
+    bouton.textContent = "JE PARTICIPE";
     return;
-
   }
 
 
-  if (!participants || participants.length === 0) {
+  memoriserUtilisateur(data);
 
-    select.innerHTML =
-      '<option value="">Aucun participant</option>';
+  utilisateur = data;
 
+  afficherProfil();
+
+  bouton.disabled = false;
+  bouton.textContent = "JE PARTICIPE";
+
+  await chargerClassement();
+
+}
+
+
+/* ==============================================
+   PARTICIPANT DEJA EXISTANT
+============================================== */
+
+async function choisirParticipantExistant() {
+
+  const select =
+    document.getElementById("participantExistant");
+
+  const id =
+    Number(select.value);
+
+  if (!id) {
+    alert("Choisis ton nom dans la liste.");
     return;
-
   }
 
+  const { data, error } =
+    await db
+      .from("participants")
+      .select("id, prenom, nom")
+      .eq("id", id)
+      .single();
 
-  /* TRI ALPHABETIQUE COTE NAVIGATEUR */
+  if (error) {
+    alert("Impossible de récupérer ce participant.");
+    return;
+  }
 
-  participants.sort(
-    (a, b) =>
-      (a.prenom || "").localeCompare(
-        b.prenom || "",
-        "fr",
-        {
-          sensitivity: "base"
-        }
-      )
-  );
+  utilisateur = data;
 
+  memoriserUtilisateur(data);
 
-  select.innerHTML = "";
+  afficherProfil();
 
-
-  participants.forEach(
-    participant => {
-
-      const option =
-        document.createElement("option");
+}
 
 
-      option.value =
-        participant.id;
+/* ==============================================
+   MEMORISATION TELEPHONE
+============================================== */
 
+function memoriserUtilisateur(participant) {
 
-      option.textContent =
-        participant.prenom;
-
-
-      select.appendChild(option);
-
-    }
+  localStorage.setItem(
+    "presidentDuBaouUtilisateur",
+    JSON.stringify(participant)
   );
 
 }
 
 
+function recupererUtilisateurMemorise() {
 
-/* ==================================================
-   COMPTEUR DE MONTEES
-================================================== */
+  const sauvegarde =
+    localStorage.getItem(
+      "presidentDuBaouUtilisateur"
+    );
 
-let nombre = 1;
+  if (!sauvegarde) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(sauvegarde);
+  }
+  catch {
+    return null;
+  }
+
+}
 
 
-function afficher() {
+/* ==============================================
+   AFFICHAGE PROFIL
+============================================== */
+
+function afficherProfil() {
 
   document
-    .getElementById("nombre")
+    .getElementById("identification")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("profil")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("zoneMontees")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("nomUtilisateur")
     .textContent =
-      nombre;
+      `${utilisateur.prenom} ${utilisateur.nom || ""}`.trim();
 
 }
 
 
-function plus() {
+/* ==============================================
+   CHANGER UTILISATEUR
+============================================== */
 
-  nombre++;
+async function changerUtilisateur() {
 
-  afficher();
+  localStorage.removeItem(
+    "presidentDuBaouUtilisateur"
+  );
+
+  utilisateur = null;
+
+  document
+    .getElementById("profil")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("zoneMontees")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("identification")
+    .classList
+    .remove("hidden");
+
+  await chargerParticipantsExistants();
 
 }
 
 
-function moins() {
+/* ==============================================
+   ENREGISTRER LES MONTEES
+============================================== */
 
-  if (nombre > 1) {
+async function validerMontees() {
 
-    nombre--;
+  if (!utilisateur || !utilisateur.id) {
 
-    afficher();
+    alert("Utilisateur non identifié.");
+    return;
 
   }
 
+  const bouton =
+    document.getElementById("boutonValider");
+
+  bouton.disabled = true;
+  bouton.textContent = "ENREGISTREMENT...";
+
+
+  const { error } =
+    await db
+      .from("montees")
+      .insert([
+        {
+          participant_id: utilisateur.id,
+          nombre: nombre
+        }
+      ]);
+
+
+  if (error) {
+
+    console.error(error);
+
+    alert(
+      "Erreur Supabase : " +
+      error.message
+    );
+
+    bouton.disabled = false;
+    bouton.textContent =
+      "VALIDER MES MONTÉES";
+
+    return;
+  }
+
+
+  alert(
+    `🔥 ${nombre} montée(s) enregistrée(s) pour ${utilisateur.prenom} !`
+  );
+
+
+  nombre = 1;
+
+  afficherNombre();
+
+
+  bouton.disabled = false;
+
+  bouton.textContent =
+    "VALIDER MES MONTÉES";
+
+
+  await chargerClassement();
+
 }
 
 
-
-/* ==================================================
-   CHARGEMENT DU CLASSEMENT
-================================================== */
+/* ==============================================
+   CLASSEMENT
+============================================== */
 
 async function chargerClassement() {
-
 
   const classement =
     document.getElementById("classement");
 
-
-  classement.innerHTML =
-    "<li>Chargement du classement...</li>";
-
-
-
-  /* PARTICIPANTS */
 
   const {
     data: participants,
@@ -463,43 +770,19 @@ async function chargerClassement() {
   } =
     await db
       .from("participants")
-      .select("id, prenom");
+      .select("id, prenom, nom");
 
 
   if (erreurParticipants) {
 
-
-    console.error(
-      "Erreur participants :",
-      erreurParticipants
-    );
-
-
-    classement.innerHTML = `
-
-      <li class="erreur">
-
-        Erreur participants :<br>
-
-        ${erreurParticipants.message}
-
-        <br>
-
-        Code :
-        ${erreurParticipants.code || "aucun"}
-
-      </li>
-
-    `;
-
+    classement.innerHTML =
+      `<li class="error">
+        Impossible de charger les participants
+      </li>`;
 
     return;
-
   }
 
-
-
-  /* MONTEES */
 
   const {
     data: montees,
@@ -512,157 +795,81 @@ async function chargerClassement() {
 
   if (erreurMontees) {
 
-
-    console.error(
-      "Erreur montées :",
-      erreurMontees
-    );
-
-
-    classement.innerHTML = `
-
-      <li class="erreur">
-
-        Erreur montées :<br>
-
-        ${erreurMontees.message}
-
-        <br>
-
-        Code :
-        ${erreurMontees.code || "aucun"}
-
-      </li>
-
-    `;
-
+    classement.innerHTML =
+      `<li class="error">
+        Impossible de charger les montées
+      </li>`;
 
     return;
-
   }
 
 
-
-  /* ==================================================
-     CALCUL DES SCORES
-  ================================================== */
-
-
   const scores =
-    participants.map(
-      participant => {
+    participants.map(p => {
+
+      const total =
+        montees
+          .filter(m =>
+            Number(m.participant_id) === Number(p.id)
+          )
+          .reduce(
+            (somme, m) =>
+              somme + Number(m.nombre || 0),
+            0
+          );
+
+      return {
+        id: p.id,
+        prenom: p.prenom,
+        nom: p.nom,
+        total: total
+      };
+
+    });
 
 
-        const total =
-          montees
+  scores.sort((a,b) => {
 
-            .filter(
-              montee =>
-                Number(montee.participant_id)
-                ===
-                Number(participant.id)
-            )
+    if (b.total !== a.total) {
+      return b.total - a.total;
+    }
 
-            .reduce(
-              (somme, montee) =>
-                somme +
-                Number(montee.nombre || 0),
+    return a.prenom.localeCompare(b.prenom, "fr");
 
-              0
-            );
-
-
-        return {
-
-          prenom:
-            participant.prenom,
-
-          total:
-            total
-
-        };
-
-
-      }
-    );
-
-
-
-  /* CLASSEMENT DECROISSANT */
-
-  scores.sort(
-    (a, b) =>
-      b.total - a.total
-  );
-
-
-
-  /* ==================================================
-     AFFICHAGE DU CLASSEMENT
-  ================================================== */
+  });
 
 
   classement.innerHTML = "";
 
 
-  scores.forEach(
-    (participant, index) => {
+  scores.forEach((p,index) => {
+
+    let medaille = "";
+
+    if (index === 0) medaille = "🥇 ";
+    else if (index === 1) medaille = "🥈 ";
+    else if (index === 2) medaille = "🥉 ";
 
 
-      let medaille = "";
+    classement.innerHTML += `
+      <li>
+        <span>
+          ${medaille}${p.prenom} ${p.nom || ""}
+        </span>
 
+        <span class="score">
+          ${p.total}
+        </span>
+      </li>
+    `;
 
-      if (index === 0) {
-
-        medaille = "🥇 ";
-
-      }
-
-      else if (index === 1) {
-
-        medaille = "🥈 ";
-
-      }
-
-      else if (index === 2) {
-
-        medaille = "🥉 ";
-
-      }
-
-
-      classement.innerHTML += `
-
-        <li>
-
-          <span>
-            ${medaille}${participant.prenom}
-          </span>
-
-          <span class="score">
-            ${participant.total}
-          </span>
-
-        </li>
-
-      `;
-
-
-    }
-  );
-
-
-
-  /* ==================================================
-     TOTAL CLUB
-  ================================================== */
+  });
 
 
   const totalClub =
     scores.reduce(
-      (somme, participant) =>
-        somme + participant.total,
-
+      (total,p) =>
+        total + p.total,
       0
     );
 
@@ -675,173 +882,40 @@ async function chargerClassement() {
 }
 
 
-
-/* ==================================================
-   ENREGISTREMENT DES MONTEES
-================================================== */
-
-async function valider() {
-
-
-  const selectParticipant =
-    document.getElementById("participant");
-
-
-  const participantId =
-    Number(
-      selectParticipant.value
-    );
-
-
-  /* SECURITE */
-
-  if (!participantId) {
-
-    alert(
-      "Choisis d'abord ton nom."
-    );
-
-    return;
-
-  }
-
-
-
-  const bouton =
-    document.getElementById(
-      "boutonValider"
-    );
-
-
-  bouton.disabled = true;
-
-
-  bouton.textContent =
-    "ENREGISTREMENT...";
-
-
-
-  const {
-    error
-  } =
-    await db
-      .from("montees")
-      .insert(
-        [
-          {
-
-            participant_id:
-              participantId,
-
-            nombre:
-              nombre
-
-          }
-        ]
-      );
-
-
-
-  if (error) {
-
-
-    console.error(
-      "Erreur enregistrement :",
-      error
-    );
-
-
-    alert(
-      "Erreur Supabase : " +
-      error.message
-    );
-
-
-    bouton.disabled = false;
-
-
-    bouton.textContent =
-      "VALIDER MES MONTÉES";
-
-
-    return;
-
-  }
-
-
-
-  /* NOM DU PARTICIPANT */
-
-  const nomParticipant =
-    selectParticipant
-      .options[
-        selectParticipant.selectedIndex
-      ]
-      .text;
-
-
-
-  /* CONFIRMATION */
-
-  alert(
-
-    "🔥 " +
-
-    nomParticipant +
-
-    " : " +
-
-    nombre +
-
-    " montée(s) enregistrée(s) !"
-
-  );
-
-
-
-  /* REMISE DU COMPTEUR A 1 */
-
-  nombre = 1;
-
-  afficher();
-
-
-
-  bouton.disabled = false;
-
-
-  bouton.textContent =
-    "VALIDER MES MONTÉES";
-
-
-
-  /* ACTUALISATION DU CLASSEMENT */
+/* ==============================================
+   DEMARRAGE
+============================================== */
+
+async function demarrer() {
 
   await chargerClassement();
+
+  utilisateur =
+    recupererUtilisateurMemorise();
+
+
+  if (utilisateur && utilisateur.id) {
+
+    afficherProfil();
+
+  }
+  else {
+
+    document
+      .getElementById("identification")
+      .classList
+      .remove("hidden");
+
+    await chargerParticipantsExistants();
+
+  }
 
 }
 
 
-
-/* ==================================================
-   DEMARRAGE DE L'APPLICATION
-================================================== */
-
-async function demarrerApplication() {
-
-  await chargerParticipants();
-
-  await chargerClassement();
-
-}
-
-
-demarrerApplication();
-
+demarrer();
 
 </script>
 
-
 </body>
-
 </html>
