@@ -22,7 +22,7 @@ body {
   min-height: 280px;
   background:
     linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.60)),
-    url("baou-header.jpg") center center / cover no-repeat;
+    url("baou-header.jpg.jpg") center center / cover no-repeat;
   color: white;
   display: flex;
   align-items: center;
@@ -117,6 +117,66 @@ select {
   font-weight: bold;
 }
 
+/* PROCHAINE CIBLE */
+
+.target {
+  background: #111;
+  color: white;
+  text-align: center;
+}
+
+.target-title {
+  opacity: .7;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.target-name {
+  color: #ed171d;
+  font-size: 27px;
+  font-weight: 800;
+  margin: 12px 0 5px;
+}
+
+.target-score {
+  opacity: .8;
+  font-size: 14px;
+}
+
+.target-gap {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 14px;
+}
+
+/* ROI SEMAINE */
+
+.king-week {
+  text-align: center;
+}
+
+.king-week-name {
+  font-size: 27px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.king-week-score {
+  color: #df171d;
+  font-size: 38px;
+  font-weight: 800;
+  margin: 5px 0;
+}
+
+.king-week-label {
+  color: #777;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* COMPTEUR */
+
 .counter {
   display: flex;
   align-items: center;
@@ -173,6 +233,8 @@ select {
   font-size: 14px;
 }
 
+/* CLASSEMENT */
+
 .ranking {
   list-style: none;
   margin: 0;
@@ -195,6 +257,40 @@ select {
   font-size: 19px;
 }
 
+/* ACTIVITE */
+
+.activity {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.activity li {
+  padding: 14px 3px;
+  border-bottom: 1px solid #eee;
+}
+
+.activity li:last-child {
+  border-bottom: none;
+}
+
+.activity-name {
+  font-weight: bold;
+}
+
+.activity-number {
+  color: #df171d;
+  font-weight: bold;
+}
+
+.activity-date {
+  color: #888;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* TOTAL */
+
 .total {
   background: #111;
   color: white;
@@ -208,7 +304,7 @@ select {
   margin: 8px 0;
 }
 
-/* COMPTE À REBOURS */
+/* COUNTDOWN */
 
 .countdown {
   background: #e1171e;
@@ -223,7 +319,6 @@ select {
 .countdown-title {
   font-size: 14px;
   font-weight: bold;
-  text-transform: uppercase;
 }
 
 .countdown-number {
@@ -243,12 +338,7 @@ select {
   padding-bottom: 25px;
 }
 
-.erreur {
-  color: #c00;
-}
-
 @media(max-width:500px) {
-
   .header {
     min-height: 220px;
   }
@@ -271,23 +361,27 @@ select {
 <body>
 
 <header class="header">
-  <div class="header-content">
-    <div class="crown">👑</div>
-    <h1>Le Président du Baou</h1>
-    <p>Challenge Team Trail Loisir</p>
-  </div>
+<div class="header-content">
+<div class="crown">👑</div>
+<h1>Le Président du Baou</h1>
+<p>Challenge Team Trail Loisir</p>
+</div>
 </header>
 
 <main class="container">
 
+<!-- IDENTIFICATION -->
+
 <section class="card">
 <h2>👋 Qui es-tu ?</h2>
 
-<select id="participant" onchange="actualiser()">
+<select id="participant">
 <option value="">Chargement des participants...</option>
 </select>
 </section>
 
+
+<!-- MON CHALLENGE -->
 
 <section class="card">
 
@@ -315,18 +409,66 @@ select {
 </section>
 
 
-<section class="card">
+<!-- PROCHAINE CIBLE -->
 
-<h2>🔥 CETTE SEMAINE</h2>
+<section class="card target">
 
-<div class="week-number" id="semaine">0</div>
+<div class="target-title">
+⚔️ PROCHAINE CIBLE
+</div>
 
-<div class="week-label">
+<div class="target-name" id="targetName">
+Calcul...
+</div>
+
+<div class="target-score" id="targetScore">
+</div>
+
+<div class="target-gap" id="targetGap">
+</div>
+
+</section>
+
+
+<!-- ROI SEMAINE -->
+
+<section class="card king-week">
+
+<h2>👑 ROI DU BAOU CETTE SEMAINE</h2>
+
+<div class="king-week-name" id="roiSemaine">
+Calcul...
+</div>
+
+<div class="king-week-score" id="roiSemaineScore">
+0
+</div>
+
+<div class="king-week-label">
 MONTÉES DEPUIS LUNDI
 </div>
 
 </section>
 
+
+<!-- MA SEMAINE -->
+
+<section class="card">
+
+<h2>🔥 CETTE SEMAINE</h2>
+
+<div class="week-number" id="semaine">
+0
+</div>
+
+<div class="week-label">
+MES MONTÉES DEPUIS LUNDI
+</div>
+
+</section>
+
+
+<!-- SAISIE -->
 
 <section class="card">
 
@@ -352,17 +494,21 @@ VALIDER MES MONTÉES
 </button>
 
 <div class="correction">
+
 <button onclick="corriger()">
 J'ai fait une erreur de saisie
 </button>
+
 </div>
 
 </section>
 
 
+<!-- CLASSEMENT -->
+
 <section class="card">
 
-<h2>🏆 CLASSEMENT</h2>
+<h2>🏆 CLASSEMENT GÉNÉRAL</h2>
 
 <ul class="ranking" id="classement">
 <li>Chargement...</li>
@@ -371,9 +517,26 @@ J'ai fait une erreur de saisie
 </section>
 
 
+<!-- ACTIVITE -->
+
+<section class="card">
+
+<h2>⚡ ACTIVITÉ RÉCENTE</h2>
+
+<ul class="activity" id="activite">
+<li>Chargement...</li>
+</ul>
+
+</section>
+
+
+<!-- TOTAL CLUB -->
+
 <section class="card total">
 
-<div>TOTAL DES MONTÉES DU CLUB</div>
+<div>
+TOTAL DES MONTÉES DU CLUB
+</div>
 
 <div class="total-number" id="totalClub">
 0
@@ -385,6 +548,8 @@ J'ai fait une erreur de saisie
 
 </section>
 
+
+<!-- COUNTDOWN -->
 
 <section class="countdown">
 
@@ -414,6 +579,10 @@ Président du Baou • Team Trail Loisir
 
 <script>
 
+/* =============================================
+   SUPABASE
+============================================= */
+
 const SUPABASE_URL =
 "https://fcizyahrzowsrorxuapv.supabase.co";
 
@@ -427,11 +596,17 @@ SUPABASE_KEY
 );
 
 let nombre = 1;
+
 let participantsGlobal = [];
+
 let monteesGlobal = [];
 
+let scoresGlobal = [];
 
-/* PARTICIPANTS */
+
+/* =============================================
+   PARTICIPANTS
+============================================= */
 
 async function chargerParticipants() {
 
@@ -445,42 +620,56 @@ await db
 .order("prenom");
 
 if(error) {
+
 console.error(error);
+
+select.innerHTML =
+"<option>Erreur de chargement</option>";
+
 return;
 }
 
-participantsGlobal = data;
+participantsGlobal =
+data || [];
 
 select.innerHTML = "";
 
-data.forEach(p => {
+participantsGlobal.forEach(p => {
 
 const option =
 document.createElement("option");
 
-option.value = p.id;
+option.value =
+p.id;
 
 option.textContent =
 p.prenom +
-(p.nom ? " " + p.nom : "");
+(p.nom ? " "+p.nom : "");
 
 select.appendChild(option);
 
 });
 
-/* mémoriser participant */
 
 const memorise =
-localStorage.getItem("participantBaou");
+localStorage.getItem(
+"participantBaou"
+);
 
 if(
 memorise &&
-data.some(p => String(p.id) === memorise)
+participantsGlobal.some(
+p =>
+String(p.id) ===
+String(memorise)
+)
 ) {
 
-select.value = memorise;
+select.value =
+memorise;
 
 }
+
 
 select.addEventListener(
 "change",
@@ -498,153 +687,83 @@ actualiser();
 }
 
 
-/* COMPTEUR */
+/* =============================================
+   COMPTEUR
+============================================= */
 
 function afficher() {
-document.getElementById("nombre").textContent =
+
+document
+.getElementById("nombre")
+.textContent =
 nombre;
+
 }
+
 
 function plus() {
+
 nombre++;
+
 afficher();
+
 }
+
 
 function moins() {
+
 if(nombre > 1) {
+
 nombre--;
+
 afficher();
+
 }
+
 }
 
 
-/* DONNEES */
+/* =============================================
+   DONNEES
+============================================= */
 
 async function chargerDonnees() {
 
 const {data,error} =
 await db
 .from("montees")
-.select("id, participant_id, nombre, created_at")
-.order("created_at", {ascending:false});
+.select(
+"id, participant_id, nombre, created_at"
+)
+.order(
+"created_at",
+{ascending:false}
+);
 
 if(error) {
+
 console.error(error);
+
 return;
+
 }
 
-monteesGlobal = data || [];
+monteesGlobal =
+data || [];
 
 actualiser();
 
 }
 
 
-/* ACTUALISATION */
+/* =============================================
+   DEBUT DE SEMAINE
+============================================= */
 
-function actualiser() {
+function obtenirLundi() {
 
-if(!participantsGlobal.length) return;
-
-const participantId =
-Number(
-document.getElementById("participant").value
-);
-
-const scores =
-participantsGlobal.map(p => {
-
-const total =
-monteesGlobal
-.filter(m =>
-Number(m.participant_id) === Number(p.id)
-)
-.reduce(
-(s,m) =>
-s + Number(m.nombre || 0),
-0
-);
-
-return {
-id:p.id,
-prenom:p.prenom,
-nom:p.nom,
-total:total
-};
-
-});
-
-scores.sort((a,b) => b.total-a.total);
-
-
-/* CLASSEMENT */
-
-const classement =
-document.getElementById("classement");
-
-classement.innerHTML = "";
-
-scores.forEach((p,index) => {
-
-let medaille = "";
-
-if(index===0) medaille="🥇 ";
-else if(index===1) medaille="🥈 ";
-else if(index===2) medaille="🥉 ";
-
-classement.innerHTML += `
-<li>
-<span>
-${medaille}${p.prenom}
-${p.nom ? " "+p.nom.charAt(0)+"." : ""}
-</span>
-
-<span class="score">
-${p.total}
-</span>
-</li>
-`;
-
-});
-
-
-/* TOTAL CLUB */
-
-const totalClub =
-scores.reduce(
-(s,p) => s+p.total,
-0
-);
-
-document.getElementById("totalClub")
-.textContent = totalClub;
-
-
-/* PARTICIPANT ACTUEL */
-
-const position =
-scores.findIndex(
-p => Number(p.id) === participantId
-);
-
-const moi =
-scores[position];
-
-if(moi) {
-
-document.getElementById("mesMontees")
-.textContent = moi.total;
-
-document.getElementById("monClassement")
-.textContent =
-(position+1)+"e";
-
-}
-
-
-/* CETTE SEMAINE */
-
-const maintenant = new Date();
+const maintenant =
+new Date();
 
 const lundi =
 new Date(maintenant);
@@ -653,165 +772,808 @@ const jour =
 maintenant.getDay();
 
 const difference =
-jour === 0 ? -6 : 1-jour;
+jour === 0
+? -6
+: 1-jour;
 
 lundi.setDate(
-maintenant.getDate()+difference
+maintenant.getDate()
++
+difference
 );
 
-lundi.setHours(0,0,0,0);
-
-const semaine =
-monteesGlobal
-
-.filter(m =>
-Number(m.participant_id) === participantId &&
-new Date(m.created_at) >= lundi
-)
-
-.reduce(
-(s,m) =>
-s + Number(m.nombre || 0),
-0
+lundi.setHours(
+0,0,0,0
 );
 
-document.getElementById("maSemaine")
-.textContent = semaine;
-
-document.getElementById("semaine")
-.textContent = semaine;
+return lundi;
 
 }
 
 
-/* ENREGISTREMENT */
+/* =============================================
+   ACTUALISATION GENERALE
+============================================= */
+
+function actualiser() {
+
+if(
+!participantsGlobal.length
+) return;
+
+
+const participantId =
+Number(
+document
+.getElementById("participant")
+.value
+);
+
+
+/* =============================================
+   SCORES GENERAUX
+============================================= */
+
+const scores =
+participantsGlobal.map(
+p => {
+
+const total =
+monteesGlobal
+
+.filter(
+m =>
+Number(m.participant_id)
+===
+Number(p.id)
+)
+
+.reduce(
+(s,m) =>
+s +
+Number(m.nombre || 0),
+0
+);
+
+
+return {
+
+id:p.id,
+
+prenom:p.prenom,
+
+nom:p.nom,
+
+total:
+Math.max(0,total)
+
+};
+
+});
+
+
+scores.sort(
+(a,b) =>
+b.total -
+a.total
+);
+
+
+scoresGlobal =
+scores;
+
+
+/* =============================================
+   CLASSEMENT GENERAL
+============================================= */
+
+const classement =
+document.getElementById(
+"classement"
+);
+
+classement.innerHTML =
+"";
+
+
+scores.forEach(
+(p,index) => {
+
+let medaille =
+"";
+
+if(index===0)
+medaille="🥇 ";
+
+else if(index===1)
+medaille="🥈 ";
+
+else if(index===2)
+medaille="🥉 ";
+
+
+const estMoi =
+Number(p.id)
+===
+participantId;
+
+
+classement.innerHTML += `
+
+<li
+style="${
+estMoi
+?
+'font-weight:bold;background:#fff4f4;'
+:
+''
+}">
+
+<span>
+
+${medaille}
+
+${p.prenom}
+
+${p.nom
+?
+" "+p.nom.charAt(0)+"."
+:
+""}
+
+${estMoi
+?
+" • Moi"
+:
+""}
+
+</span>
+
+<span class="score">
+
+${p.total}
+
+</span>
+
+</li>
+
+`;
+
+});
+
+
+/* =============================================
+   TOTAL CLUB
+============================================= */
+
+const totalClub =
+scores.reduce(
+(s,p) =>
+s+p.total,
+0
+);
+
+
+document
+.getElementById(
+"totalClub"
+)
+.textContent =
+totalClub;
+
+
+/* =============================================
+   MOI
+============================================= */
+
+const position =
+scores.findIndex(
+p =>
+Number(p.id)
+===
+participantId
+);
+
+
+const moi =
+scores[position];
+
+
+if(moi) {
+
+document
+.getElementById(
+"mesMontees"
+)
+.textContent =
+moi.total;
+
+
+document
+.getElementById(
+"monClassement"
+)
+.textContent =
+(position+1)+"e";
+
+}
+
+
+/* =============================================
+   SCORES DE LA SEMAINE
+============================================= */
+
+const lundi =
+obtenirLundi();
+
+
+const scoresSemaine =
+participantsGlobal.map(
+p => {
+
+const total =
+monteesGlobal
+
+.filter(
+m =>
+Number(m.participant_id)
+===
+Number(p.id)
+&&
+new Date(m.created_at)
+>=
+lundi
+)
+
+.reduce(
+(s,m) =>
+s +
+Number(m.nombre || 0),
+0
+);
+
+
+return {
+
+id:p.id,
+
+prenom:p.prenom,
+
+nom:p.nom,
+
+total:
+Math.max(0,total)
+
+};
+
+});
+
+
+scoresSemaine.sort(
+(a,b) =>
+b.total -
+a.total
+);
+
+
+/* =============================================
+   MA SEMAINE
+============================================= */
+
+const moiSemaine =
+scoresSemaine.find(
+p =>
+Number(p.id)
+===
+participantId
+);
+
+
+const totalSemaine =
+moiSemaine
+?
+moiSemaine.total
+:
+0;
+
+
+document
+.getElementById(
+"maSemaine"
+)
+.textContent =
+totalSemaine;
+
+
+document
+.getElementById(
+"semaine"
+)
+.textContent =
+totalSemaine;
+
+
+/* =============================================
+   ROI DE LA SEMAINE
+============================================= */
+
+const roi =
+scoresSemaine[0];
+
+
+if(
+roi &&
+roi.total > 0
+) {
+
+document
+.getElementById(
+"roiSemaine"
+)
+.textContent =
+`${roi.prenom} ${roi.nom || ""}`;
+
+
+document
+.getElementById(
+"roiSemaineScore"
+)
+.textContent =
+roi.total;
+
+}
+
+else {
+
+document
+.getElementById(
+"roiSemaine"
+)
+.textContent =
+"Le trône est libre 👀";
+
+
+document
+.getElementById(
+"roiSemaineScore"
+)
+.textContent =
+"0";
+
+}
+
+
+/* =============================================
+   PROCHAINE CIBLE
+============================================= */
+
+const targetName =
+document.getElementById(
+"targetName"
+);
+
+const targetScore =
+document.getElementById(
+"targetScore"
+);
+
+const targetGap =
+document.getElementById(
+"targetGap"
+);
+
+
+if(
+moi &&
+position === 0
+) {
+
+/*
+UTILISATEUR PREMIER
+*/
+
+const poursuivant =
+scores[1];
+
+
+targetName.textContent =
+"👑 TU ES PRÉSIDENT DU BAOU";
+
+
+if(poursuivant) {
+
+const avance =
+moi.total -
+poursuivant.total;
+
+
+targetScore.textContent =
+`${poursuivant.prenom} est juste derrière avec ${poursuivant.total} montée(s)`;
+
+
+targetGap.textContent =
+`🔥 Tu as ${avance} montée(s) d'avance. Surveille tes arrières !`;
+
+}
+
+else {
+
+targetScore.textContent =
+"Personne derrière toi";
+
+targetGap.textContent =
+"Profite du trône 😎";
+
+}
+
+}
+
+else if(moi) {
+
+/*
+PERSONNE JUSTE DEVANT
+*/
+
+const cible =
+scores[
+position-1
+];
+
+
+const manque =
+cible.total -
+moi.total +
+1;
+
+
+targetName.textContent =
+`${cible.prenom} ${cible.nom || ""}`;
+
+
+targetScore.textContent =
+`${cible.total} montée(s)`;
+
+
+targetGap.textContent =
+`🔥 Encore ${manque} montée(s) pour le dépasser`;
+
+}
+
+
+/* =============================================
+   ACTIVITE RECENTE
+============================================= */
+
+afficherActivite();
+
+}
+
+
+/* =============================================
+   ACTIVITE
+============================================= */
+
+function afficherActivite() {
+
+const zone =
+document.getElementById(
+"activite"
+);
+
+
+const activites =
+monteesGlobal
+
+.filter(
+m =>
+Number(m.nombre) > 0
+)
+
+.slice(
+0,
+5
+);
+
+
+if(
+activites.length === 0
+) {
+
+zone.innerHTML =
+"<li>Aucune activité pour le moment.</li>";
+
+return;
+
+}
+
+
+zone.innerHTML =
+"";
+
+
+activites.forEach(
+m => {
+
+const participant =
+participantsGlobal.find(
+p =>
+Number(p.id)
+===
+Number(m.participant_id)
+);
+
+
+if(!participant)
+return;
+
+
+const date =
+new Date(
+m.created_at
+);
+
+
+const texteDate =
+date.toLocaleString(
+"fr-FR",
+{
+day:"2-digit",
+month:"2-digit",
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+
+zone.innerHTML += `
+
+<li>
+
+<div>
+
+<span class="activity-name">
+
+🔥 ${participant.prenom}
+
+</span>
+
+vient d'ajouter
+
+<span class="activity-number">
+
++${m.nombre}
+
+</span>
+
+montée(s)
+
+</div>
+
+<div class="activity-date">
+
+${texteDate}
+
+</div>
+
+</li>
+
+`;
+
+});
+
+}
+
+
+/* =============================================
+   VALIDATION MONTEES
+============================================= */
 
 async function valider() {
 
 const participantId =
 Number(
-document.getElementById("participant").value
+document
+.getElementById(
+"participant"
+)
+.value
 );
 
+
 if(!participantId) {
-alert("Choisis ton nom.");
+
+alert(
+"Choisis ton nom."
+);
+
 return;
+
 }
 
-const bouton =
-document.getElementById("boutonValider");
 
-bouton.disabled = true;
+const bouton =
+document.getElementById(
+"boutonValider"
+);
+
+
+bouton.disabled =
+true;
+
+
 bouton.textContent =
 "ENREGISTREMENT...";
+
 
 const {error} =
 await db
 .from("montees")
-.insert([{
-participant_id:participantId,
-nombre:nombre
-}]);
+.insert([
+{
+
+participant_id:
+participantId,
+
+nombre:
+nombre
+
+}
+]);
+
 
 if(error) {
 
 alert(
-"Erreur Supabase : "+
+"Erreur Supabase : "
++
 error.message
 );
 
-bouton.disabled=false;
 
-bouton.textContent=
+bouton.disabled =
+false;
+
+
+bouton.textContent =
 "VALIDER MES MONTÉES";
 
+
 return;
+
 }
 
-nombre=1;
+
+const ajoute =
+nombre;
+
+
+nombre =
+1;
+
 
 afficher();
 
-bouton.disabled=false;
 
-bouton.textContent=
+bouton.disabled =
+false;
+
+
+bouton.textContent =
 "VALIDER MES MONTÉES";
 
+
 await chargerDonnees();
+
+
+alert(
+`🔥 +${ajoute} montée(s) enregistrée(s) !`
+);
 
 }
 
 
-/* CORRECTION */
+/* =============================================
+   CORRECTION
+============================================= */
 
 async function corriger() {
 
 const participantId =
 Number(
-document.getElementById("participant").value
+document
+.getElementById(
+"participant"
+)
+.value
 );
+
 
 const retrait =
 prompt(
 "Combien de montées veux-tu retirer ?"
 );
 
+
 const valeur =
 Number(retrait);
 
-if(!valeur || valeur<=0) return;
+
+if(
+!valeur ||
+valeur <= 0
+) return;
+
 
 if(
 !confirm(
-"Retirer "+valeur+
-" montée(s) de ton total ?"
+`Retirer ${valeur} montée(s) de ton total ?`
 )
 ) return;
+
 
 const {error} =
 await db
 .from("montees")
-.insert([{
-participant_id:participantId,
-nombre:-valeur
-}]);
+.insert([
+{
+
+participant_id:
+participantId,
+
+nombre:
+-valeur
+
+}
+]);
+
 
 if(error) {
 
 alert(
-"Erreur : "+error.message
+"Erreur : "
++
+error.message
 );
 
 return;
+
 }
+
 
 await chargerDonnees();
 
 }
 
 
-/* COMPTE À REBOURS */
+/* =============================================
+   COMPTE A REBOURS
+============================================= */
 
 function actualiserCountdown() {
 
-/*
-2e tour présidentielle
-Dimanche 2 mai 2027
-20h00 heure française
-*/
-
 const fin =
-new Date("2027-05-02T20:00:00+02:00");
+new Date(
+"2027-05-02T20:00:00+02:00"
+);
+
 
 const maintenant =
 new Date();
 
+
 let difference =
-fin-maintenant;
+fin -
+maintenant;
 
-if(difference<=0) {
 
-document.getElementById("countdown")
+if(
+difference <= 0
+) {
+
+document
+.getElementById(
+"countdown"
+)
 .textContent =
 "🏁 CHALLENGE TERMINÉ";
 
@@ -819,43 +1581,80 @@ return;
 
 }
 
+
 const jours =
 Math.floor(
-difference/(1000*60*60*24)
+difference /
+(1000*60*60*24)
 );
 
+
 difference -=
-jours*1000*60*60*24;
+jours *
+1000*60*60*24;
+
 
 const heures =
 Math.floor(
-difference/(1000*60*60)
+difference /
+(1000*60*60)
 );
 
+
 difference -=
-heures*1000*60*60;
+heures *
+1000*60*60;
+
 
 const minutes =
 Math.floor(
-difference/(1000*60)
+difference /
+(1000*60)
 );
+
 
 const secondes =
 Math.floor(
-(difference%(1000*60))/1000
+(
+difference %
+(1000*60)
+)
+/1000
 );
 
-document.getElementById("countdown")
+
+document
+.getElementById(
+"countdown"
+)
 .textContent =
-jours+"j "+
-String(heures).padStart(2,"0")+"h "+
-String(minutes).padStart(2,"0")+"m "+
-String(secondes).padStart(2,"0")+"s";
+
+jours+"j "
+
++
+
+String(heures)
+.padStart(2,"0")
++"h "
+
++
+
+String(minutes)
+.padStart(2,"0")
++"m "
+
++
+
+String(secondes)
+.padStart(2,"0")
++"s";
 
 }
 
 
-/* DEMARRAGE */
+/* =============================================
+   DEMARRAGE
+============================================= */
 
 async function demarrer() {
 
@@ -871,6 +1670,7 @@ actualiserCountdown,
 );
 
 }
+
 
 demarrer();
 
